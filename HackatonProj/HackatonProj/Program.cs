@@ -10,6 +10,7 @@ namespace HackatonProj
     {
         static void Main(string[] args)
         {
+            //Zwykły komentarz
         }
     }
 }
