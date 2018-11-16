@@ -8,10 +8,13 @@ namespace HackatonProj.Logics
 {
     class GameOverseer
     {
+        //Place for players
+        //Place for enemies
         
-        void LaunchGame()
+        
+        public void PerformGameLoop()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
