@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SFML.Graphics;
+
 namespace HackatonProj.Data.Units
 {
-    interface ILivingEntity : IMovable
+    interface ILivingEntity : IMovable, Drawable
     {
         /// <summary>
         /// 

@@ -59,7 +59,10 @@
     <Compile Include="Data\IMovable.cs" />
     <Compile Include="Data\Objects\Bullet.cs" />
     <Compile Include="Data\Objects\IProjectile.cs" />
+    <Compile Include="Data\Units\Gate.cs" />
+    <Compile Include="Data\Units\IEnemy.cs" />
     <Compile Include="Data\Units\ILivingEntity.cs" />
+    <Compile Include="Data\Units\Player.cs" />
     <Compile Include="Drawing\DrawStuff.cs" />
     <Compile Include="Drawing\IView.cs" />
     <Compile Include="Logics\Core.cs" />
