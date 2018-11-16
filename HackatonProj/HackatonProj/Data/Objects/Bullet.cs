@@ -8,7 +8,7 @@ namespace HackatonProj.Data.Objects
 {
     public class Bullet: IProjectile
     {
-        private int _damage;
+        private int _damage = 1;
 
         public int damage
         {
