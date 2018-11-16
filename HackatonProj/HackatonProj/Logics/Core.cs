@@ -14,10 +14,15 @@ namespace HackatonProj.Logics
         private Vector2i windowSize = new Vector2i(1024, 768);
         private string title = "De Vindicators";
         private IView drawingComponent;
-        private Logics _logics;
-        public enum gameState { Running, Playing, Exit }
+        private readonly Logics _logics;
+        /// <summary>
+        /// PresentingStory - application is presenting the story to the users.
+        /// Playing - main loop of the game is being performed.
+        /// Exit - game is about to be terminated.
+        /// </summary>
+        public enum gameState { PresentingStory, Playing, Exit }
 
-        private gameState currentState = gameState.Running;
+        private gameState currentState = gameState.PresentingStory;
 
         public void ChangeState(gameState newState)
         {
@@ -36,8 +41,8 @@ namespace HackatonProj.Logics
             {
                 switch (currentState)
                 {
-                    case gameState.Running:
-                        ChangeState(gameState.Running);
+                    case gameState.PresentingStory:
+                        ChangeState(gameState.PresentingStory);
                         break;
                     case gameState.Playing:
                         _logics.LaunchGame();

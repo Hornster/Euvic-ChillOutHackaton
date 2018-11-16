@@ -62,7 +62,9 @@
     <Compile Include="Data\Units\ILivingEntity.cs" />
     <Compile Include="Drawing\DrawStuff.cs" />
     <Compile Include="Drawing\IView.cs" />
+    <Compile Include="Drawing\StoryPresenter.cs" />
     <Compile Include="Logics\Core.cs" />
+    <Compile Include="Logics\FontLoader.cs" />
     <Compile Include="Logics\GameOverseer.cs" />
     <Compile Include="Logics\Logics.cs" />
     <Compile Include="Program.cs" />
