@@ -91,6 +91,8 @@
     <Content Include="Textures\NOR0.png" />
     <Content Include="Textures\NOR1.png" />
     <Content Include="Textures\OR.png" />
+    <Content Include="Textures\Player0.png" />
+    <Content Include="Textures\Player1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

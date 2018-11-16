@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HackatonProj.Data.Units
 {
-    class IEnemy
+    interface IEnemy : ILivingEntity
     {
+
     }
 }

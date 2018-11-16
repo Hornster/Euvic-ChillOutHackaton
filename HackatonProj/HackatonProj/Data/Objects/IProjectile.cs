@@ -12,6 +12,9 @@ namespace HackatonProj.Data.Objects
         /// Gets the damage of the projectile.
         /// </summary>
         /// <returns></returns>
-        int GetDamage();
+        int damage
+        {
+            get;
+        }
     }
 }

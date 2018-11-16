@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace HackatonProj.Data.Objects
 {
-    class Bullet: IProjectile
+    public class Bullet: IProjectile
     {
-        public int GetDamage()
+        private int _damage;
+
+        public int damage
         {
-            throw new NotImplementedException();
+            get
+            {
+                return damage;
+            }
         }
     }
 }
