@@ -57,7 +57,7 @@ namespace HackatonProj.Data.Units
         public void Reset()
         {
             Random r = new Random();
-            gateSprite.Position = new Vector2f(-100, (float)r.Next(screeenSize));
+            gateSprite.Position = new Vector2f(-100, (float)r.Next(WindowData.windowSize.X));
         }
     }
 }
