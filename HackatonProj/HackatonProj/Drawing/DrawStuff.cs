@@ -9,7 +9,7 @@ using SFML.Window;
 
 namespace HackatonProj.Drawing
 {
-    class DrawStuff : IView
+    class DrawStuff : IView, IViewOneObject
     {
         private RenderWindow window;
 
@@ -21,6 +21,23 @@ namespace HackatonProj.Drawing
         public void DrawObject(Drawable obj)
         {
             window.Draw(obj);
+        }
+
+        public void ClearView()
+        {
+            window.Clear();
+        }
+
+        public void Display()
+        {
+            window.Display();
+        }
+
+        public void DrawSingleObject(Drawable obj)
+        {
+            ClearView();
+            DrawObject(obj);
+            Display();
         }
     }
 }

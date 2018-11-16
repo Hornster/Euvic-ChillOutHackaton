@@ -11,6 +11,18 @@ namespace HackatonProj.Drawing
 {
     interface IView
     {
+        /// <summary>
+        /// Makes passed object to be drawn in the window.
+        /// </summary>
+        /// <param name="obj">Object to draw.</param>
         void DrawObject(Drawable obj);
+        /// <summary>
+        /// Clears the window.
+        /// </summary>
+        void ClearView();
+        /// <summary>
+        /// Shows drawn stuff on the screen.
+        /// </summary>
+        void Display();
     }
 }

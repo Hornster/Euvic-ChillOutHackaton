@@ -1,17 +1,23 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HackatonProj.Logics;
 using SFML.Graphics;
+using SFML.System;
 
 namespace HackatonProj.Drawing
 {
-    class StoryPresenter
+    /// <summary>
+    /// Use the iterator to iterate through collection of story pages.
+    /// </summary>
+    public class StoryPresenter : IEnumerable<Tuple<Text, int>>
     {
+        //The key is the page, the value - duration of the page.
+        private LinkedList<Tuple<Text, int>> storyPages = new LinkedList<Tuple<string, int>>();
         private FontLoader fontLoader = new FontLoader();
-        public enum storyPages { Page1, Page2, Page3, Page4}
 
         private readonly string storyPage1 = "E.U.V.I.C. - Elite Unit of Vindication In Crysis - has sent \n" +
                                                    "its best Vindicators to help people of AEInf sector and save them \n" +
@@ -33,48 +39,31 @@ namespace HackatonProj.Drawing
 
         private Text storyline;
 
-        private static StoryPresenter _instance;
-
-        private StoryPresenter()
+        public StoryPresenter()
         {
             storyline = new Text("", fontLoader.GetFont(), fontSize);
+            storyPages.AddLast(Tuple.Create(new Text(storyPage1, fontLoader.GetFont(), fontSize), showTime));
+            storyPages.AddLast(Tuple.Create(new Text(storyPage2, fontLoader.GetFont(), fontSize), showTime));
+            storyPages.AddLast(Tuple.Create(new Text(storyPage3, fontLoader.GetFont(), fontSize), showTime));
+            storyPages.AddLast(Tuple.Create(new Text(storyPage4, fontLoader.GetFont(), fontSize), showTime));
+        }
+        
+
+
+        public IEnumerator<Tuple<Text, int>> GetEnumerator()
+        {
+            return storyPages.GetEnumerator();
         }
 
-        private static StoryPresenter GetInstance()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            if (_instance == null)
-            {
-                _instance = new StoryPresenter();
-            }
-
-            return _instance;
+            return GetEnumerator();
         }
 
-
-        /// <summary>
-        /// Returns a text object that contains story of the game.
-        /// </summary>
-        /// <returns>A reference to Text object that contains the story and time, in seconds,
-        /// for which the story shall bve presented to player.</returns>
-        public static Tuple<Text, int> PresentStory(storyPages pageIndex)
+        public void WaitForNextPage(int timeInSeconds)
         {
-            StoryPresenter instance = GetInstance();
-            switch (pageIndex)
-            {
-                case storyPages.Page1:
-                    instance.storyline = new Text(instance.storyPage1, instance.fontLoader.GetFont(), fontSize);
-                    break;
-                case storyPages.Page2:
-                    instance.storyline = new Text(instance.storyPage2, instance.fontLoader.GetFont(), fontSize);
-                    break;
-                case storyPages.Page3:
-                    instance.storyline = new Text(instance.storyPage3, instance.fontLoader.GetFont(), fontSize);
-                    break;
-                case storyPages.Page4:
-                    instance.storyline = new Text(instance.storyPage4, instance.fontLoader.GetFont(), fontSize);
-                    break;
-            }
-            return Tuple.Create<Text, int>(instance.storyline, showTime);
+            Clock clock = new Clock();
+            while (clock.ElapsedTime.AsSeconds() < timeInSeconds) ; //Wait for given amount of time
         }
     }
 }

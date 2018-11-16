@@ -16,13 +16,13 @@ namespace HackatonProj.Logics
         private IView drawingComponent;
         private readonly Logics _logics;
         /// <summary>
-        /// PresentingStory - application is presenting the story to the users.
+        /// StartPresentingStory - application is presenting the story to the users.
         /// Playing - main loop of the game is being performed.
         /// Exit - game is about to be terminated.
         /// </summary>
-        public enum gameState { PresentingStory, Playing, Exit }
+        public enum gameState { IsPresentingStory, StartPresentingStory, Playing, Exit }
 
-        private gameState currentState = gameState.PresentingStory;
+        private gameState currentState = gameState.StartPresentingStory;
 
         public void ChangeState(gameState newState)
         {
@@ -31,8 +31,10 @@ namespace HackatonProj.Logics
 
         public Core()
         {
-            drawingComponent = new DrawStuff(windowSize, title);
-            _logics = new Logics();
+            DrawStuff drawStuff = new DrawStuff(windowSize, title);
+            _logics = new Logics(drawingComponent.DrawObject, drawStuff.DrawSingleObject, ChangeState);
+
+            drawingComponent = drawStuff;
         }
 
         private void MainLoop()
@@ -41,8 +43,10 @@ namespace HackatonProj.Logics
             {
                 switch (currentState)
                 {
-                    case gameState.PresentingStory:
-                        ChangeState(gameState.PresentingStory);
+                    case gameState.StartPresentingStory:
+                        ChangeState(gameState.StartPresentingStory);
+                        break;
+                    case gameState.IsPresentingStory:
                         break;
                     case gameState.Playing:
                         _logics.LaunchGame();
