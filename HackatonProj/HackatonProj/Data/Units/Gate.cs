@@ -48,5 +48,16 @@ namespace HackatonProj.Data.Units
                 return _health;
             }
         }
+
+        public Gate()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            Random r = new Random();
+            gateSprite.Position = new Vector2f(-100, (float)r.Next(screeenSize));
+        }
     }
 }

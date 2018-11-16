@@ -8,6 +8,6 @@ namespace HackatonProj.Data.Units
 {
     interface IEnemy : ILivingEntity
     {
-
+        void Reset();
     }
 }
