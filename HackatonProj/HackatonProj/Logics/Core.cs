@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HackatonProj.Data;
 using HackatonProj.Drawing;
 using SFML.Graphics;
 using SFML.System;
@@ -11,8 +12,8 @@ namespace HackatonProj.Logics
 {
     public class Core
     {
-        private Vector2i windowSize = new Vector2i(1024, 768);
-        private string title = "De Vindicators";
+        private Vector2i windowSize = WindowData.windowSize;
+        private string title = WindowData.programTitle;
         private IView drawingComponent;
         private readonly Logics _logics;
         /// <summary>

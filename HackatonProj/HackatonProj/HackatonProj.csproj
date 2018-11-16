@@ -79,6 +79,7 @@
     <Compile Include="Data\IMovable.cs" />
     <Compile Include="Data\Objects\Bullet.cs" />
     <Compile Include="Data\Objects\IProjectile.cs" />
+    <Compile Include="Data\WindowData.cs" />
     <Compile Include="Data\Units\Gate.cs" />
     <Compile Include="Data\Units\GateTypes.cs" />
     <Compile Include="Data\Units\IEnemy.cs" />
@@ -98,16 +99,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Fonts\gameFont.fon">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="csfml-audio-2.dll" />
-    <Content Include="csfml-graphics-2.dll" />
-    <Content Include="csfml-network-2.dll" />
-    <Content Include="csfml-system-2.dll" />
-    <Content Include="csfml-window-2.dll" />
-    <Content Include="openal32.dll" />
+    <Content Include="csfml-audio-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-graphics-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-network-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-system-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-window-2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="openal32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\AND.png" />
     <Content Include="Textures\NAND0.png" />
     <Content Include="Textures\NAND1-2.png" />

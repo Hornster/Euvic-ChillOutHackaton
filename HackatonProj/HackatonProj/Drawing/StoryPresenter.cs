@@ -16,7 +16,7 @@ namespace HackatonProj.Drawing
     public class StoryPresenter : IEnumerable<Tuple<Text, int>>
     {
         //The key is the page, the value - duration of the page.
-        private LinkedList<Tuple<Text, int>> storyPages = new LinkedList<Tuple<string, int>>();
+        private LinkedList<Tuple<Text, int>> storyPages = new LinkedList<Tuple<Text, int>>();
         private FontLoader fontLoader = new FontLoader();
 
         private readonly string storyPage1 = "E.U.V.I.C. - Elite Unit of Vindication In Crysis - has sent \n" +
