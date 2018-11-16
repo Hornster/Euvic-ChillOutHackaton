@@ -36,7 +36,13 @@ namespace HackatonProj.Logics
 
             drawingComponent = drawStuff;
         }
-
+        /// <summary>
+        /// Entrance point from the outside. Enters the main loop.
+        /// </summary>
+        public void Launch()
+        {
+            MainLoop();
+        }
         private void MainLoop()
         {
             do
@@ -47,6 +53,7 @@ namespace HackatonProj.Logics
                         ChangeState(gameState.StartPresentingStory);
                         break;
                     case gameState.IsPresentingStory:
+                        //TODO - catch events here
                         break;
                     case gameState.Playing:
                         _logics.LaunchGame();

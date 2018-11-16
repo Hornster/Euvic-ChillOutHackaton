@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HackatonProj.Logics;
 
 namespace HackatonProj
 {
@@ -10,7 +11,8 @@ namespace HackatonProj
     {
         static void Main(string[] args)
         {
-            //Zwykły komentarz
+            Core core = new Core();
+            core.Launch();
         }
     }
 }
