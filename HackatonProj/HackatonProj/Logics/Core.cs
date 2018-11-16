@@ -15,9 +15,14 @@ namespace HackatonProj.Logics
         private string title = "De Vindicators";
         private IView drawingComponent;
         private Logics _logics;
-        private enum gameState { Running, Playing, Exit }
+        public enum gameState { Running, Playing, Exit }
 
         private gameState currentState = gameState.Running;
+
+        public void ChangeState(gameState newState)
+        {
+            currentState = newState;
+        }
 
         public Core()
         {
@@ -25,13 +30,18 @@ namespace HackatonProj.Logics
             _logics = new Logics();
         }
 
-        private MainLoop()
+        private void MainLoop()
         {
             do
             {
                 switch (currentState)
                 {
-                        
+                    case gameState.Running:
+                        ChangeState(gameState.Running);
+                        break;
+                    case gameState.Playing:
+                        _logics.LaunchGame();
+                        break;
                 }
             } while (currentState != gameState.Exit);
         }

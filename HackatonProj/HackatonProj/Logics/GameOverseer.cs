@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace HackatonProj.Logics
 {
-    class Logics
+    class GameOverseer
     {
-        public void LaunchGame()
+        
+        void LaunchGame()
         {
-            throw new NotImplementedException();
+
         }
     }
 }
