@@ -42,12 +42,20 @@ namespace HackatonProj.Data.Units
             numberOfPlayers++;
             if (numberOfPlayers > 2)
                 throw new Exception("There is no way for more than 2 players!");
+            if(numberOfPlayers == 1)
+            {
+                playerSprite.Texture = Textures.Player1Texture;
+            }
+            else
+            {
+                playerSprite.Texture = Textures.Player2Texture;
+            }
             this.name = name;
         }
 
         public void ReceiveHit(Bullet bullet)
         {
-            _health--;
+            _health -= bullet.damage;
             if (health <= 0)
                 throw new NotImplementedException();
         }

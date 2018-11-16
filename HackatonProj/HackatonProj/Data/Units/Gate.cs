@@ -12,26 +12,33 @@ namespace HackatonProj.Data.Units
 {
     class Gate : IEnemy
     {
-        private int _health = 1;
+        protected int _health = 1;
+        protected Sprite gateSprite; 
 
         // Moves the gate by a given float vector
         public void Move(Vector2f vector)
         {
+            gateSprite.Position += vector;
+        }
 
+        // Moves the gate to a given float vector
+        public void MoveTo(Vector2f vector)
+        {
+            gateSprite.Position = vector;
         }
 
 
         // Draws The gate
-        public void Draw(RenderTarget target, RenderStates state)
+        public void Draw(RenderTarget target, RenderStates states)
         {
-
+            gateSprite.Draw(target, states);
         }
 
         public void ReceiveHit(Bullet bullet)
         {
-            _health--;
+            _health -= bullet.damage;
             if (health <= 0)
-                throw new NotImplementedException();
+                throw new NotImplementedException("He is dead, but I don't know what to do :( !");
         }
 
         public int health
