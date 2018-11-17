@@ -15,7 +15,8 @@ namespace HackatonProj.Data
 
         public BackgroundContainer(Vector2f windowSize)
         {
-            sprite = new Sprite(Textures.BgTexture);
+            sprite = new Sprite();
+            sprite.Texture = Textures.BgTexture;
             sprite.Texture.Repeated = true;
 
             float factorX = windowSize.X / sprite.GetLocalBounds().Width;
