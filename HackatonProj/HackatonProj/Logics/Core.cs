@@ -33,7 +33,7 @@ namespace HackatonProj.Logics
         public Core()
         {
             DrawStuff drawStuff = new DrawStuff(windowSize, title);
-            _logics = new Logics(drawingComponent.DrawObject, drawStuff.DrawSingleObject, ChangeState);
+            _logics = new Logics(drawStuff.DrawObject, drawStuff.DrawSingleObject, ChangeState);
 
             drawingComponent = drawStuff;
         }
@@ -51,7 +51,8 @@ namespace HackatonProj.Logics
                 switch (currentState)
                 {
                     case gameState.StartPresentingStory:
-                        ChangeState(gameState.StartPresentingStory);
+                        _logics.StartPresentingStory();
+                        ChangeState(gameState.IsPresentingStory);
                         break;
                     case gameState.IsPresentingStory:
                         //TODO - catch events here
