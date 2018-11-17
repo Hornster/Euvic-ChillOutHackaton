@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>HackatonProj</RootNamespace>
     <AssemblyName>HackatonProj</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\IMovable.cs" />
     <Compile Include="Data\Objects\Bullet.cs" />
     <Compile Include="Data\Objects\IProjectile.cs" />

@@ -14,7 +14,7 @@ namespace HackatonProj.Data.Units
     {
         static int numberOfPlayers = 0;
 
-
+        Enums.players player;
         Sprite playerSprite;
         string name;
         int _health = 10;
@@ -45,10 +45,12 @@ namespace HackatonProj.Data.Units
             if(numberOfPlayers == 1)
             {
                 playerSprite.Texture = Textures.Player1Texture;
+                player = Enums.players.Player1;
             }
             else
             {
                 playerSprite.Texture = Textures.Player2Texture;
+                player = Enums.players.Player2;
             }
             this.name = name;
         }
@@ -56,16 +58,23 @@ namespace HackatonProj.Data.Units
         public void ReceiveHit(Bullet bullet)
         {
             _health -= bullet.damage;
-            if (health <= 0)
+            if (_health <= 0)
                 throw new NotImplementedException();
         }
 
-        public int health
+        public int Health
         {
             get
             {
                 return _health;
             }
+        }
+
+        public void Shoot()
+        {
+            Vector2f position = playerSprite.Position;  
+            Vector2f size = new Vector2f(playerSprite.Texture.Size.X, playerSprite.Texture.Size.Y);
+            // something.add(new Bullet(player, new vector2f(position.x + 0.5 * size.x, position.y)))
         }
     }
 }

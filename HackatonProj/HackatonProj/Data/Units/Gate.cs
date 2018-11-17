@@ -10,8 +10,10 @@ using HackatonProj.Data.Objects;
 
 namespace HackatonProj.Data.Units
 {
-    class Gate : IEnemy
+    abstract class Gate : IEnemy
     {
+        protected float _velocity = 0;
+        protected int _maxHealth = 1;
         protected int _health = 1;
         protected Sprite gateSprite; 
 
@@ -38,7 +40,8 @@ namespace HackatonProj.Data.Units
         {
             _health -= bullet.damage;
             if (health <= 0)
-                throw new NotImplementedException("He is dead, but I don't know what to do :( !");
+                //throw new NotImplementedException("He is dead, but I don't know what to do :( !");
+                this.Reset(); // Now I know :)
         }
 
         public int health
@@ -57,7 +60,20 @@ namespace HackatonProj.Data.Units
         public void Reset()
         {
             Random r = new Random();
-            gateSprite.Position = new Vector2f(-100, (float)r.Next(WindowData.windowSize.X));
+
+            this._velocity = 0;
+            this._health = _maxHealth;
+            this.gateSprite.Position = new Vector2f(-100, (float)r.Next(WindowData.windowSize.X));
+        }
+
+        public void Update()
+        {
+            this.Move(new Vector2f(0, _velocity / 60));
+        }
+        
+        public void Launch(float velocity)
+        {
+            this._velocity = velocity;
         }
     }
 }
