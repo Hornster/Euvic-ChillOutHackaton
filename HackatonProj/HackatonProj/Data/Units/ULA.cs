@@ -14,7 +14,8 @@ namespace HackatonProj.Data.Units
     {
         private bool    _isAlive    = false;
         private Sprite  _ULASprite  = new Sprite();
-        private int     _health     = 10;
+        private int     _health     = 250;
+        readonly Vector2f velocity = new Vector2f(20.0f, 40.0f);
 
         //IEnemy methods
 
@@ -47,6 +48,12 @@ namespace HackatonProj.Data.Units
         {
             _ULASprite.Position += vector;
         }
+
+        public void Move(Time lastFrameTime)
+        {
+            Move(velocity * lastFrameTime.AsSeconds());
+        }
+        
 
         public void Draw(RenderTarget target, RenderStates states)
         {

@@ -122,17 +122,39 @@
     <Content Include="openal32.dll" />
     <Content Include="OpenTK.Compatibility.dll" />
     <Content Include="OpenTK.dll" />
-    <Content Include="Textures\AND.png" />
-    <Content Include="Textures\BOSS.png" />
-    <Content Include="Textures\NAND0.png" />
-    <Content Include="Textures\NAND1-2.png" />
-    <Content Include="Textures\NAND1.png" />
-    <Content Include="Textures\NOR0-2.png" />
-    <Content Include="Textures\NOR0.png" />
-    <Content Include="Textures\NOR1.png" />
-    <Content Include="Textures\OR.png" />
-    <Content Include="Textures\Player0.png" />
-    <Content Include="Textures\Player1.png" />
+    <Content Include="Textures\AND.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\BOSS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\NAND0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\NAND1-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\NAND1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\NOR0-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\NOR0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\NOR1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\OR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Player0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Player1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

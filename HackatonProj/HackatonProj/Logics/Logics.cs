@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using HackatonProj.Data;
 using HackatonProj.Drawing;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using SFML.Window;
 
@@ -15,6 +16,8 @@ namespace HackatonProj.Logics
 {
     class Logics
     {
+        private bool firstLoop = true;
+        private Clock mainClock = new Clock();
         private Action<Drawable> requestDrawObj;
         private Action<Drawable> requestDrawSingleObj;
         private Action<Core.gameState> changeState;
@@ -53,7 +56,7 @@ namespace HackatonProj.Logics
             for (Enums.players player = 0; player < Enums.players.End; player++)
             {
                 var result = keyEventResolver.ResolveKeyPressedEventPlayers(keyArgs, player);
-                //TODO - send the result, together with player, to GameOverseer in order to make changes in players' speed vector.
+                gameOverseer.ModifyPlayerMoveShotState(result, player);
             }
         }
         /// <summary>
@@ -75,7 +78,14 @@ namespace HackatonProj.Logics
         }
         public void PerformGameLoop()
         {
-            gameOverseer.PerformGameLoop();
+            if (firstLoop)
+            {
+                mainClock.Restart();
+                firstLoop = false;
+            }
+
+            gameOverseer.PerformGameLoop(mainClock.ElapsedTime);
+            mainClock.Restart();
         }
     }
 }

@@ -17,8 +17,15 @@ namespace HackatonProj.Data.Units
         protected float _velocity = 0;
         protected int _maxHealth = 1;
         protected int _health = 1;
-        protected Sprite gateSprite = new Sprite(); 
+        protected Sprite gateSprite = new Sprite();
+        readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
+        Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
 
+        public void Move(Time lastFrameTime)
+        {
+            currentVelocity *= lastFrameTime.AsSeconds();
+            Move(currentVelocity);
+        }
         // Moves the gate by a given float vector
         public void Move(Vector2f vector)
         {

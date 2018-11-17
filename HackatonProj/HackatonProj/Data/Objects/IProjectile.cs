@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HackatonProj.Data.Objects
 {
-    interface IProjectile : Drawable
+    interface IProjectile : Drawable, IMovable
     {
         /// <summary>
         /// Gets the damage of the projectile.
