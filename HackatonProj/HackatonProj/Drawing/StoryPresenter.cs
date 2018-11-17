@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HackatonProj.Data;
 using HackatonProj.Logics;
 using SFML.Graphics;
 using SFML.System;
@@ -42,6 +43,10 @@ namespace HackatonProj.Drawing
         {
             Text storyline = new Text(storyPage1, fontLoader.GetFont(), fontSize);
             storyline.Color = fillColor;
+            Vector2i position = WindowData.windowSize / 2;
+            position.X = position.X - (int)storyline.GetLocalBounds().Width /2 ;
+            position.Y = position.Y - (int)storyline.GetLocalBounds().Height / 2;
+            storyline.Position = new Vector2f(position.X, position.Y);
 
             return new Text(storyline);
         }
