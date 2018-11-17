@@ -16,11 +16,10 @@ namespace HackatonProj.Data.Units
         private float myRespawnAwaitTime = 0.0f;
         private static Random r = new Random();
         protected bool _isAlive = false;
-        protected float _velocity = 0;
         protected int _maxHealth = 1;
         protected int _health = 1;
         protected Sprite gateSprite = new Sprite();
-        readonly Vector2f maxVelocity = new Vector2f(0.0f, 800.0f);
+        private Vector2f maxVelocity = new Vector2f(0.0f, 0.0f);
         Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
 
         public void Move(Time lastFrameTime)
@@ -73,19 +72,20 @@ namespace HackatonProj.Data.Units
 
         public void Reset()
         {
-            this._velocity = 0;
+            this.maxVelocity.Y = 0;
+            this._isAlive = false;
             this._health = _maxHealth;
-            this.gateSprite.Position = new Vector2f((float)r.Next(WindowData.windowSize.X), 0);
+            this.MoveTo(new Vector2f((float)r.Next(WindowData.windowSize.X), -gateSprite.GetLocalBounds().Height -10.0f));//a little bit of padding
         }
 
         public void Update()
         {
-            this.Move(new Vector2f(0, _velocity / 60));
+            this.Move(new Vector2f(0, currentVelocity.Y));
         }
         
         public void Launch(float velocity)
         {
-            this._velocity = velocity;
+            this.maxVelocity.Y = velocity;
             this._isAlive = true;
         }
 
@@ -100,7 +100,7 @@ namespace HackatonProj.Data.Units
         public void Respawn(float currentTime, float respawnTime, float velocity)
         {
             myRespawnAwaitTime += currentTime;
-            if (currentTime >= respawnTime)
+            if (myRespawnAwaitTime >= respawnTime)
             {
                 Launch(velocity);
                 myRespawnAwaitTime = 0.0f;

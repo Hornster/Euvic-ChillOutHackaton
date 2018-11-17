@@ -18,6 +18,10 @@ namespace HackatonProj.Data.Units
         private int     _health     = 250;
         readonly Vector2f velocity = new Vector2f(20.0f, 40.0f);
 
+        public ULA()
+        {
+            _ULASprite.Texture = Textures.BossTexture;
+        }
         //IEnemy methods
 
         public void Reset()

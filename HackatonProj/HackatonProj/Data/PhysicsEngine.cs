@@ -21,7 +21,7 @@ namespace HackatonProj.Data
 
         static public Vector2f CalcColSolvePlayer(IColidable colliding, borderCollision collisionType)
         {
-            Vector2f solveVect;
+            Vector2f solveVect = new Vector2f(colliding.GetCollisionBox().Left, colliding.GetCollisionBox().Top);
             switch (collisionType)
             {
                 case borderCollision.Down:
@@ -38,7 +38,7 @@ namespace HackatonProj.Data
                     break;
             }
 
-            return new Vector2f(colliding.GetCollisionBox().Left, colliding.GetCollisionBox().Top);
+            return solveVect;
         }
         
         static public borderCollision CheckBorderCollision(IColidable colidable)
@@ -53,6 +53,13 @@ namespace HackatonProj.Data
                     return borderCollision.Up;
                 if (colidable.GetCollisionBox().Top + colidable.GetCollisionBox().Height >= WindowData.windowSize.Y)
                     return borderCollision.Down;
+            }
+            else if (colidable is IEnemy)
+            {
+                if (colidable.GetCollisionBox().Top + colidable.GetCollisionBox().Height > WindowData.windowSize.Y)
+                {
+                    return borderCollision.Down;
+                }
             }
 
 
