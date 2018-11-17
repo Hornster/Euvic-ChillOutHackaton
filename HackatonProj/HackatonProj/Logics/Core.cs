@@ -74,7 +74,7 @@ namespace HackatonProj.Logics
                         ChangeState(gameState.IsPresentingStory);
                         break;
                     case gameState.IsPresentingStory:
-                        //TODO - catch events here
+                        //Basically, do nothing. It's time for the game to present the story, after all...
                         break;
                     case gameState.StopPresentingStory:
                         //Semi state - main thread regains control over the window here.
@@ -82,7 +82,7 @@ namespace HackatonProj.Logics
                         ChangeState(gameState.Playing);
                         break;
                     case gameState.Playing:
-                        _logics.LaunchGame();
+                        _logics.PerformGameLoop();
                         break;
                 }
             } while (currentState != gameState.Exit);
