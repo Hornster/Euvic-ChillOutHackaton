@@ -25,7 +25,7 @@ namespace HackatonProj.Drawing
                                                    "its best Vindicators to help people of AEInf sector and save them \n" +
                                                    "from cruel fate.";
 
-        private const int showTime = 8;
+        private const int showTime = 0;
         private const int fontSize = 40;
 
         private readonly string storyPage2 = "U.L.A. - the ominous, fearsome Universal Life-form Annihilator \n" +
