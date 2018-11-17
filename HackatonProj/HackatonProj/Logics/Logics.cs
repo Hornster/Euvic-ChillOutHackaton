@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HackatonProj.Drawing;
 using SFML.Graphics;
-using SFML.System;
+using SFML.Window;
 using SFML.Window;
 
 namespace HackatonProj.Logics
