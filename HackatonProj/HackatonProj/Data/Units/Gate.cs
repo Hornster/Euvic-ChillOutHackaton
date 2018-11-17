@@ -76,5 +76,12 @@ namespace HackatonProj.Data.Units
         {
             this._velocity = velocity;
         }
+
+        public RectangleShape GetCollisionBox()
+        {
+            RectangleShape tmp = new RectangleShape(new Vector2f(gateSprite.TextureRect.Width, gateSprite.TextureRect.Height));
+            tmp.Position = gateSprite.Position;
+            return tmp;
+        }
     }
 }

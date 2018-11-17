@@ -84,6 +84,7 @@
     <Compile Include="Data\IMovable.cs" />
     <Compile Include="Data\Objects\Bullet.cs" />
     <Compile Include="Data\Objects\IProjectile.cs" />
+    <Compile Include="Data\Units\ULA.cs" />
     <Compile Include="Data\WindowData.cs" />
     <Compile Include="Data\Units\Gate.cs" />
     <Compile Include="Data\Units\GateTypes.cs" />
@@ -120,6 +121,7 @@
     <Content Include="OpenTK.Compatibility.dll" />
     <Content Include="OpenTK.dll" />
     <Content Include="Textures\AND.png" />
+    <Content Include="Textures\BOSS.png" />
     <Content Include="Textures\NAND0.png" />
     <Content Include="Textures\NAND1-2.png" />
     <Content Include="Textures\NAND1.png" />

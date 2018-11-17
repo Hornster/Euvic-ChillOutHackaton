@@ -10,6 +10,7 @@ namespace HackatonProj.Data
 {
     public static class Textures
     {
+        static private Texture _BossTexture     = new Texture("BOSS.png");
         static private Texture _OrTexture       = new Texture("OR.png");
         static private Texture _AndTexture      = new Texture("AND.png");
         static private Texture _NorTexture      = new Texture("NOR0-2.png");
@@ -19,6 +20,7 @@ namespace HackatonProj.Data
         static private Texture _Player1Texture  = new Texture("Player1.png");
         static private Texture _Player2Texture  = new Texture("Player2.png");
 
+        static public Texture BossTexture       { get { return _BossTexture; } }
         static public Texture OrTexture         { get { return _OrTexture; } }
         static public Texture AndTexture        { get { return _AndTexture; } }
         static public Texture NorTexture        { get { return _NorTexture; } }
