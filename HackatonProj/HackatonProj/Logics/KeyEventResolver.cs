@@ -15,6 +15,11 @@ namespace HackatonProj.Logics
         {
             return args.Code == Keyboard.Key.Escape;
         }
+
+        public bool ResolveKeyPressedResetState(KeyEventArgs args)
+        {
+            return args.Code == Keyboard.Key.Q;
+        }
         /// <summary>
         /// Resolves the keyPressedEvents.
         /// </summary>
