@@ -27,15 +27,33 @@ namespace HackatonProj.Logics
         {
             _killCounter++;
         }
-        
-        public void PerformGameLoop()
+
+        private void ResetPlayersVelocities()
         {
-            throw new NotImplementedException();
+            foreach (Player player in _listOfPlayers)
+            {
+                player.ResetVelocity();
+            }
+        }
+
+
+        public void ModifyPlayerMoveShotState(Tuple<Vector2i, bool> movementAndShot, Enums.players player)
+        {
+            _listOfPlayers[(int)player].MultiplyVelocity(movementAndShot.Item1);
+
+            if (movementAndShot.Item2) //If the player fired a bullet, add it to listOfBullets
+            {
+                _listOfBullets.Add(_listOfPlayers[(int)player].Shoot());
+            }
+        }
+        public void PerformGameLoop(Time lastFrameTimeSeconds)
+        {
+             ResetPlayersVelocities();
         }
 
         //
         //Sets players & enemies
-        public void PrepareLaunch()
+        public GameOverseer()
         {
             _listOfEnemies.Add(new And());
             _listOfEnemies.Add(new Or());

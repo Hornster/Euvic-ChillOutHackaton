@@ -23,6 +23,7 @@ namespace HackatonProj.Logics
 
         private StoryPresenter storyPresenter = new StoryPresenter();
         private KeyEventResolver keyEventResolver = new KeyEventResolver();
+        private GameOverseer gameOverseer = new GameOverseer();
 
         public Logics(Action<Drawable> drawingMethodRef, Action<Drawable> drawingSingleObjMethodRef,
             Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction,
@@ -72,9 +73,9 @@ namespace HackatonProj.Logics
             setWindowThreadActive(false);//Deactivate the window before switching to next thread.
             changeState(Core.gameState.StopPresentingStory);
         }
-        public void LaunchGame()
+        public void PerformGameLoop()
         {
-            
+            gameOverseer.PerformGameLoop();
         }
     }
 }

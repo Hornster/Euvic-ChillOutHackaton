@@ -12,12 +12,19 @@ namespace HackatonProj.Data.Units
 {
     class Player : ILivingEntity
     {
-        static int numberOfPlayers = 0;
-
+        static int numberOfPlayers;
+        
         Enums.players player;
         Sprite playerSprite;
         string name;
-        int _health = 10;
+        readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
+        Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
+
+        public void MultiplyVelocity(Vector2i directionVector)
+        {
+            currentVelocity.X = maxVelocity.X * directionVector.X;
+            currentVelocity.Y = maxVelocity.Y * directionVector.Y;
+        }
 
         // Moves the player by a given float vector.
         public void Move(Vector2f vector)
@@ -57,18 +64,12 @@ namespace HackatonProj.Data.Units
 
         public void ReceiveHit(Bullet bullet)
         {
-            _health -= bullet.damage;
-            if (_health <= 0)
+            Health -= bullet.damage;
+            if (Health <= 0)
                 throw new NotImplementedException();
         }
 
-        public int Health
-        {
-            get
-            {
-                return _health;
-            }
-        }
+        public int Health { get; private set; } = 10;
 
         public void Shoot()
         {
@@ -82,6 +83,11 @@ namespace HackatonProj.Data.Units
             RectangleShape tmp = new RectangleShape(new Vector2f(playerSprite.TextureRect.Width, playerSprite.TextureRect.Height));
             tmp.Position = playerSprite.Position;
             return tmp;
+        }
+
+        public void ResetVelocity()
+        {
+            currentVelocity.X = currentVelocity.Y = 0.0f;
         }
     }
 }
