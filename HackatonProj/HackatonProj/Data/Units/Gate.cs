@@ -13,6 +13,7 @@ namespace HackatonProj.Data.Units
 {
     abstract class Gate : IEnemy
     {
+        private static Random r = new Random();
         protected bool _isAlive = false;
         protected float _velocity = 0;
         protected int _maxHealth = 1;
@@ -63,12 +64,11 @@ namespace HackatonProj.Data.Units
         public Gate()
         {
             Reset();
+            this.rotate();
         }
 
         public void Reset()
         {
-            Random r = new Random();
-
             this._velocity = 0;
             this._health = _maxHealth;
             this.gateSprite.Position = new Vector2f((float)r.Next(WindowData.windowSize.X), 0);
@@ -99,6 +99,12 @@ namespace HackatonProj.Data.Units
             Vector2f size = new Vector2f(gateSprite.TextureRect.Left, gateSprite.TextureRect.Top);
             FloatRect tmp = new FloatRect(position, size);
             return tmp;
+        }
+
+        private void rotate()
+        {
+            this.gateSprite.Origin = new Vector2f(128, 128);
+            this.gateSprite.Rotation = 180;
         }
     }
 }
