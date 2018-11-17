@@ -19,17 +19,20 @@ namespace HackatonProj.Logics
         private Action<Drawable> requestDrawSingleObj;
         private Action<Core.gameState> changeState;
         private Action<bool> setWindowThreadActive;
+        private Func<Core.gameState> ChkCurrentState;
 
         private StoryPresenter storyPresenter = new StoryPresenter();
         private KeyEventResolver keyEventResolver = new KeyEventResolver();
 
         public Logics(Action<Drawable> drawingMethodRef, Action<Drawable> drawingSingleObjMethodRef,
-            Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction)
+            Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction,
+                Func<Core.gameState> ChkCurrentStateFunc)
         {
             requestDrawObj = drawingMethodRef;
             changeState = changeStateMethodRef;
             requestDrawSingleObj = drawingSingleObjMethodRef;
             this.setWindowThreadActive = setWindowThreadActiveAction;
+            ChkCurrentState = ChkCurrentStateFunc;
         }
         
         public void StartPresentingStory()
@@ -60,6 +63,9 @@ namespace HackatonProj.Logics
             setWindowThreadActive(true);//In SFML only one thread at any given time can have the window active.
             foreach (var page in storyPresenter)
             {
+                if (ChkCurrentState() == Core.gameState.Exit)
+                    return;
+
                 requestDrawSingleObj(page.Item1);
                 storyPresenter.WaitForNextPage((page.Item2));
             }

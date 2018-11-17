@@ -39,6 +39,11 @@ namespace HackatonProj.Logics
             currentState = newState;
         }
 
+        public gameState ChkState()
+        {
+            return currentState;
+        }
+
         public Core()
         {
             DrawStuff drawStuff = new DrawStuff(windowSize, title);
