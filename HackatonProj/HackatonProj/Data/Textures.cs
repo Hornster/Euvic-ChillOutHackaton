@@ -10,16 +10,17 @@ namespace HackatonProj.Data
 {
     public static class Textures
     {
-        private static readonly string texturesPlacement = "\\textures\\";
-        static private Texture _BossTexture     = new Texture(texturesPlacement+"BOSS.png");
+        private static readonly string texturesPlacement = "Textures\\";
+
+        static private Texture _BossTexture     = new Texture(texturesPlacement + "BOSS.png");
         static private Texture _OrTexture       = new Texture(texturesPlacement + "OR.png");
         static private Texture _AndTexture      = new Texture(texturesPlacement + "AND.png");
         static private Texture _NorTexture      = new Texture(texturesPlacement + "NOR0-2.png");
         static private Texture _NorTexture2     = new Texture(texturesPlacement + "NOR1.png");
         static private Texture _NandTexture     = new Texture(texturesPlacement + "NAND0.png");
-        static private Texture _NandTexture2    = new Texture(texturesPlacement + "NAND0-2.png");
-        static private Texture _Player1Texture  = new Texture(texturesPlacement + "Player1.png");
-        static private Texture _Player2Texture  = new Texture(texturesPlacement + "Player2.png");
+        static private Texture _NandTexture2    = new Texture(texturesPlacement + "NAND1-2.png");
+        static private Texture _Player1Texture  = new Texture(texturesPlacement + "Player0.png");
+        static private Texture _Player2Texture  = new Texture(texturesPlacement + "Player1.png");
 
         static public Texture BossTexture       { get { return _BossTexture; } }
         static public Texture OrTexture         { get { return _OrTexture; } }
