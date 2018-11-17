@@ -22,15 +22,15 @@ namespace HackatonProj.Drawing
         private FontLoader fontLoader = new FontLoader();
 
 
-        private const int showTime = 0;
-        private const int fontSize = 20;
+        private const int showTime = 6;
+        private const int fontSize = 30;
 
         private readonly string storyPage1 = "E.U.V.I.C. - Elite Unit of Vindication In Crysis - has sent \n" +
                                              "its best Vindicators to help people of AEInf sector and save them \n" +
                                              "from cruel fate.";
 
 
-        private readonly string storyPage2 = "U.L.A. - the ominous, fearsome Universal Life-form Annihilator \n" +
+        private readonly string storyPage2 = "U.L.A. - the ominous, fearsome Universal Life-form Annihilator, \n" +
                                              "the master of Binarium Gates, wants to bury the last sparks of hope \n" +
                                              "in this sector.";
 
