@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using SFML.Graphics;
 using HackatonProj.Data.Objects;
 using SFML.Window;
-using SFML.System;
 
 namespace HackatonProj.Data.Units
 {
