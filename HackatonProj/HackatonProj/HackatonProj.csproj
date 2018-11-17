@@ -132,6 +132,10 @@
     <Content Include="Textures\Background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\Background.png" />
+    <Content Include="Textures\Background2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\BOSS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
