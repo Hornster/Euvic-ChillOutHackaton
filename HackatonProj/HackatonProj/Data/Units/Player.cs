@@ -26,6 +26,11 @@ namespace HackatonProj.Data.Units
             currentVelocity.Y = maxVelocity.Y * directionVector.Y;
         }
 
+        public void Move(Time lastFrameTime)
+        {
+            currentVelocity *= lastFrameTime.AsSeconds();
+            Move(currentVelocity);
+        }
         // Moves the player by a given float vector.
         public void Move(Vector2f vector)
         {

@@ -14,5 +14,10 @@ namespace HackatonProj.Data
         /// </summary>
         /// <param name="movement"></param>
         void Move(Vector2f movement);
+        /// <summary>
+        /// Move the object accordingly to las frame time. Use the object's stored current velocity.
+        /// </summary>
+        /// <param name="lastFrameTime"></param>
+        void Move(Time lastFrameTime);
     }
 }

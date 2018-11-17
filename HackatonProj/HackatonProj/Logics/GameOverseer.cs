@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.Graphics;
 
 namespace HackatonProj.Logics
 {
@@ -21,6 +22,8 @@ namespace HackatonProj.Logics
 
         //kill counter... counts kills... when you kill someone it will increse... by one... it's incrementing by one 
         int _killCounter = 0;
+        private const int killsAmount = 50; //Amount of kills required for ULA to spawn.
+        private bool isUlaSpawned = false;
 
         //Increaments kill count by one
         void IncrementKillCount()
@@ -28,12 +31,32 @@ namespace HackatonProj.Logics
             _killCounter++;
         }
 
-        private void ResetPlayersVelocities()
+        private void UpdateEntitiesMovement(Time lastFrameTime)
+        {
+            foreach (Player player in _listOfPlayers)
+            {
+                player.Move(lastFrameTime);
+            }
+
+            foreach (IEnemy enemy in _listOfEnemies)
+            {
+                enemy.Move(lastFrameTime);
+            }
+
+            foreach (Bullet bullet in _listOfBullets)
+            {
+                bullet.Move(lastFrameTime);
+            }
+        }
+
+        private void ResetEntitiesCurrentVelocity()
         {
             foreach (Player player in _listOfPlayers)
             {
                 player.ResetVelocity();
             }
+            
+            //Bullets need no reset as they travel at constant speed. Enemies travel with their own, constant speed, too.
         }
 
 
@@ -46,9 +69,19 @@ namespace HackatonProj.Logics
                 _listOfBullets.Add(_listOfPlayers[(int)player].Shoot());
             }
         }
-        public void PerformGameLoop(Time lastFrameTimeSeconds)
+
+        public void PerformGameLoop(Time lastFrameTime)
         {
-             ResetPlayersVelocities();
+            UpdateEntitiesMovement(lastFrameTime);
+            
+
+            if (_killCounter >= killsAmount && !isUlaSpawned)
+            {
+                SpawnULA();
+                
+            }
+
+            ResetEntitiesCurrentVelocity();
         }
 
         //
@@ -76,8 +109,9 @@ namespace HackatonProj.Logics
             }
         }
 
-        public void KillCountEnough()
+        public void SpawnULA()
         {
+            isUlaSpawned = true;
             for(int i = _listOfEnemies.Count; i >= 0; i--)
             {
                 _listOfEnemies.RemoveAt(i);
