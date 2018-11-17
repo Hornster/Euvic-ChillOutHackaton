@@ -13,18 +13,19 @@ namespace HackatonProj.Data.Units
 {
     abstract class Gate : IEnemy
     {
+        private float myRespawnAwaitTime = 0.0f;
         private static Random r = new Random();
         protected bool _isAlive = false;
         protected float _velocity = 0;
         protected int _maxHealth = 1;
         protected int _health = 1;
         protected Sprite gateSprite = new Sprite();
-        readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
+        readonly Vector2f maxVelocity = new Vector2f(0.0f, 800.0f);
         Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
 
         public void Move(Time lastFrameTime)
         {
-            currentVelocity *= lastFrameTime.AsSeconds();
+            currentVelocity = maxVelocity * lastFrameTime.AsSeconds();
             Move(currentVelocity);
         }
         // Moves the gate by a given float vector
@@ -49,8 +50,11 @@ namespace HackatonProj.Data.Units
         {
             _health -= bullet.damage;
             if (Health <= 0)
+            {
                 //throw new NotImplementedException("He is dead, but I don't know what to do :( !");
                 this._isAlive = false; // Now I know :)
+                Reset();
+            }
         }
 
         public int Health
@@ -93,10 +97,20 @@ namespace HackatonProj.Data.Units
             }
         }
 
+        public void Respawn(float currentTime, float respawnTime, float velocity)
+        {
+            myRespawnAwaitTime += currentTime;
+            if (currentTime >= respawnTime)
+            {
+                Launch(velocity);
+                myRespawnAwaitTime = 0.0f;
+            }
+        }
+
         public FloatRect GetCollisionBox()
         {
-            Vector2f position = new Vector2f(gateSprite.TextureRect.Width, gateSprite.TextureRect.Height);
-            Vector2f size = new Vector2f(gateSprite.TextureRect.Left, gateSprite.TextureRect.Top);
+            Vector2f position = new Vector2f(gateSprite.Position.X, gateSprite.Position.Y);
+            Vector2f size = new Vector2f(gateSprite.TextureRect.Width, gateSprite.TextureRect.Height);
             FloatRect tmp = new FloatRect(position, size);
             return tmp;
         }

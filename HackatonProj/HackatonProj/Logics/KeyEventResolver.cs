@@ -21,7 +21,7 @@ namespace HackatonProj.Logics
         /// <param name="args">Arguments of the pressed key</param>
         /// <param name="player">The ID of the player that is being checked.</param>
         /// <returns>Tuple with axis multipliers of movement for the player and a boolean indicating shot.</returns>
-        public Tuple<Vector2i, bool>ResolveKeyPressedEventPlayers(KeyEventArgs args, Enums.players player)
+        public bool ResolveKeyPressedEventPlayers(KeyEventArgs args, Enums.players player)
         {
             switch (player)
             {
@@ -31,56 +31,86 @@ namespace HackatonProj.Logics
                     return CheckMovementKeysPlayer2Light(args);
             }
 
-            return Tuple.Create(new Vector2i(0, 0), false);
+            return false;
         }
 
-        private Tuple<Vector2i, bool> CheckMovementKeysPlayer1Dark(KeyEventArgs args)
+        public Vector2i ListenForPlayersInput(Enums.players player)
         {
-            Vector2i velocityVect = new Vector2i();
-            bool isFiring = false;
-            switch (args.Code)
+            switch (player)
             {
-                case Keyboard.Key.W:
-                    velocityVect.Y = -1;
-                    break;
-                case Keyboard.Key.S:
-                    velocityVect.Y = 1;
-                    break;
-                case Keyboard.Key.A:
-                    velocityVect.X = -1;
-                     break;
-                case Keyboard.Key.D:
-                    velocityVect.X = 1;
-                    break;
+                case Enums.players.Player1:
+                    return ListenForInputPlayer1Dark();
+                case Enums.players.Player2:
+                    return ListenForInputPlayer2Light();
             }
 
+            return new Vector2i(0, 0);
+        }
+        private Vector2i ListenForInputPlayer1Dark()
+        {
+            Vector2i velocityVect = new Vector2i();
+            if (Keyboard.IsKeyPressed(Keyboard.Key.T))
+            {
+                velocityVect.Y = -1;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.G))
+            {
+                velocityVect.Y = 1;
+            }
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.F))
+            {
+                velocityVect.X = -1;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.H))
+            {
+                velocityVect.X = 1;
+            }
+
+            return velocityVect;
+        }
+        private Vector2i ListenForInputPlayer2Light()
+        {
+            Vector2i velocityVect = new Vector2i();
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
+            {
+                velocityVect.Y = -1;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
+            {
+                velocityVect.Y = 1;
+            }
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            {
+                velocityVect.X = -1;
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            {
+                velocityVect.X = 1;
+            }
+
+            return velocityVect;
+        }
+        private  bool CheckMovementKeysPlayer1Dark(KeyEventArgs args)
+        {
+            
+            bool isFiring = false;
+
+            
             isFiring = args.Code == Keyboard.Key.Z;
 
-            return Tuple.Create(velocityVect, isFiring);
+            return isFiring;
         }
-        private Tuple<Vector2i, bool> CheckMovementKeysPlayer2Light(KeyEventArgs args)
+        private  bool CheckMovementKeysPlayer2Light(KeyEventArgs args)
         {
-            Vector2i velocityVect = new Vector2i();
             bool isFiring = false;
-            switch (args.Code)
-            {
-                case Keyboard.Key.Up:
-                    velocityVect.Y = -1;
-                    break;
-                case Keyboard.Key.Down:
-                    velocityVect.Y = 1;
-                    break;
-                case Keyboard.Key.Left:
-                    velocityVect.X = -1;
-                    break;
-                case Keyboard.Key.Right:
-                    velocityVect.X = 1;
-                    break;
-            }
+            
 
-            isFiring = args.Code == Keyboard.Key.Slash;
+            isFiring = args.Code == Keyboard.Key.Period;
 
-            return Tuple.Create(velocityVect, isFiring);
+            return isFiring;
         }
     }
 }

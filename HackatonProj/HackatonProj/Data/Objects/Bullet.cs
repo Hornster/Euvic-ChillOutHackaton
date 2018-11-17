@@ -12,8 +12,8 @@ namespace HackatonProj.Data.Objects
 {
     public class Bullet: IProjectile, IColidable
     {
-        private RectangleShape _shape = new RectangleShape(new Vector2f(3, 10));
-        readonly Vector2f velocity = new Vector2f(0.0f, 1000.0f);
+        private RectangleShape _shape = new RectangleShape(new Vector2f(5, 20));
+        readonly Vector2f velocity = new Vector2f(0.0f, -1000.0f);
 
         public int damage { get; } = 1;
 
@@ -21,6 +21,8 @@ namespace HackatonProj.Data.Objects
         public Bullet(Enums.players player, Vector2f startingPosition)
         {
             this.Player = player;
+            _shape.Position = startingPosition;
+            _shape.FillColor = Color.Cyan;
         }
 
         public Enums.players Player { get; }
@@ -33,6 +35,7 @@ namespace HackatonProj.Data.Objects
         public void Move(Time lastFrameTime)
         {
             Vector2f frameVelocity = new Vector2f(velocity.X, velocity.Y * lastFrameTime.AsSeconds());
+            Move(frameVelocity);
         }
 
         public void Draw(RenderTarget target, RenderStates states)
@@ -47,8 +50,8 @@ namespace HackatonProj.Data.Objects
 
         public FloatRect GetCollisionBox()
         {
-            Vector2f position = new Vector2f(_shape.TextureRect.Width, _shape.TextureRect.Height);
-            Vector2f size = new Vector2f(_shape.TextureRect.Left, _shape.TextureRect.Top);
+            Vector2f position = new Vector2f(_shape.Position.X, _shape.Position.Y);
+            Vector2f size = new Vector2f(_shape.Size.X, _shape.Size.Y);
             FloatRect tmp = new FloatRect(position, size);
 
             return tmp;

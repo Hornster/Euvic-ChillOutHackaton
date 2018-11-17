@@ -17,6 +17,7 @@ namespace HackatonProj.Logics
     {
         private bool firstLoop = true;
         private Clock mainClock = new Clock();
+        private const float singleFrameTime = 1.0f / 60.0f;
         private Action<Drawable> requestDrawObj;
         private Action<Drawable> requestDrawSingleObj;
         private Action<Core.gameState> changeState;
@@ -59,7 +60,26 @@ namespace HackatonProj.Logics
             for (Enums.players player = 0; player < Enums.players.End; player++)
             {
                 var result = keyEventResolver.ResolveKeyPressedEventPlayers(keyArgs, player);
-                gameOverseer.ModifyPlayerMoveShotState(result, player);
+                gameOverseer.ModifyPlayerShotState(result, player);
+            }
+        }
+
+        public void ListenForPlayerInput()
+        {
+            for (Enums.players player = 0; player < Enums.players.End; player++)
+            {
+                var result = keyEventResolver.ListenForPlayersInput(player);
+                gameOverseer.ModifyPlayerMoveState(result, player);
+            }
+        }
+        /// <summary>
+        /// Special method that makes the game run slower on fast computers.
+        /// </summary>
+        public void SetMax60FPS()
+        {
+            while (mainClock.ElapsedTime.AsSeconds() < 0.9f * singleFrameTime)
+            {
+
             }
         }
         /// <summary>
@@ -81,12 +101,14 @@ namespace HackatonProj.Logics
         }
         public void PerformGameLoop()
         {
+            SetMax60FPS();
             if (firstLoop)
             {
                 mainClock.Restart();
                 firstLoop = false;
             }
 
+            ListenForPlayerInput();
             gameOverseer.PerformGameLoop(mainClock.ElapsedTime);
 
             clearWindow();

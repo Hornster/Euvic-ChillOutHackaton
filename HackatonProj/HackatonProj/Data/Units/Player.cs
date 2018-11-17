@@ -20,6 +20,10 @@ namespace HackatonProj.Data.Units
         readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
         Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
 
+        private void ResetPlayer()
+        {
+
+        }
         public void MultiplyVelocity(Vector2i directionVector)
         {
             currentVelocity.X = maxVelocity.X * directionVector.X;
@@ -66,7 +70,19 @@ namespace HackatonProj.Data.Units
             }
             this.name = name;
         }
-
+        public void ReceiveHit(IEnemy enemy)
+        {
+            Health -= enemy.Health;
+            if (Health <= 0)
+            {
+                LivesCount--;
+                ResetPlayer();
+                if (LivesCount <= 0)
+                {
+                    IsAlive = false;
+                }
+            }
+        }
         public void ReceiveHit(Bullet bullet)
         {
             Health -= bullet.damage;
@@ -81,19 +97,19 @@ namespace HackatonProj.Data.Units
         }
 
         public int Health { get; private set; } = 10;
-        public bool IsAlive { get; private set; }
+        public bool IsAlive { get; private set; } = true;
 
         public Bullet Shoot()
         {
             Vector2f position = playerSprite.Position;  
             Vector2f size = new Vector2f(playerSprite.Texture.Size.X, playerSprite.Texture.Size.Y);
-            return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X - (float)0.5 * size.X, position.Y));
+            return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X, position.Y + 0.2f*size.Y));
         }
 
         public FloatRect GetCollisionBox()
         {
-            Vector2f position = new Vector2f(playerSprite.TextureRect.Width, playerSprite.TextureRect.Height);
-            Vector2f size = new Vector2f(playerSprite.TextureRect.Left, playerSprite.TextureRect.Top);
+            Vector2f position = new Vector2f(playerSprite.Position.X, playerSprite.Position.Y);
+            Vector2f size = new Vector2f(playerSprite.TextureRect.Width, playerSprite.TextureRect.Height);
             FloatRect tmp = new FloatRect(position, size);
             return tmp;
         }

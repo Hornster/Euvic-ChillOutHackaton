@@ -12,6 +12,7 @@ namespace HackatonProj.Data.Units
 {
     class ULA : IEnemy, IColidable
     {
+        float myRespawnAwaitTime = 15.0f;
         private bool    _isAlive    = false;
         private Sprite  _ULASprite  = new Sprite();
         private int     _health     = 250;
@@ -83,6 +84,16 @@ namespace HackatonProj.Data.Units
             get
             {
                 return _isAlive;
+            }
+        }
+
+        public void Respawn(float currentTime, float respawnTime, float velocity)
+        {
+            myRespawnAwaitTime += currentTime;
+            if (currentTime >= respawnTime)
+            {
+                Launch(velocity);
+                myRespawnAwaitTime = 0.0f;
             }
         }
 

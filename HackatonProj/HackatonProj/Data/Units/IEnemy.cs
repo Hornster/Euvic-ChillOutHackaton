@@ -13,6 +13,8 @@ namespace HackatonProj.Data.Units
         void Update();
         void Launch(float velocity);
         bool IsAlive { get; }
+
+        void Respawn(float currentTime, float respawnTime, float velocity);
         //void Move(Time lastFrameTime);
     }
 }
