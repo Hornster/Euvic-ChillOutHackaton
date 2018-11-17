@@ -17,6 +17,7 @@ namespace HackatonProj.Logics
         private string title = WindowData.programTitle;
         private IView drawingComponent;
         private readonly Logics _logics;
+        private EventCatcher eventCatcher;
         /// <summary>
         /// StartPresentingStory - application is presenting the story to the users.
         /// Playing - main loop of the game is being performed.
@@ -25,6 +26,13 @@ namespace HackatonProj.Logics
         public enum gameState { IsPresentingStory, StartPresentingStory, StopPresentingStory,Playing, Exit }
 
         private gameState currentState = gameState.StartPresentingStory;
+
+        private void IniEventCatcher()
+        {
+            eventCatcher.RegisterChangeState(ChangeState);
+            //eventCatcher.RegisterWindowEvents();
+            eventCatcher.RegisterKeyEvents(_logics.HandleKeyPressedEvent);
+        }
 
         public void ChangeState(gameState newState)
         {
@@ -36,6 +44,7 @@ namespace HackatonProj.Logics
             DrawStuff drawStuff = new DrawStuff(windowSize, title);
             _logics = new Logics(drawStuff.DrawObject, drawStuff.DrawSingleObject, ChangeState, drawStuff.SetActive);
 
+            eventCatcher = new EventCatcher(drawStuff);
             drawingComponent = drawStuff;
         }
         /// <summary>
@@ -47,8 +56,12 @@ namespace HackatonProj.Logics
         }
         private void MainLoop()
         {
+            //Initialize stuff that can be initialized after calls to constructors have been done.
+            IniEventCatcher();
             do
             {
+                eventCatcher.CatchEvents();
+
                 switch (currentState)
                 {
                     case gameState.StartPresentingStory:

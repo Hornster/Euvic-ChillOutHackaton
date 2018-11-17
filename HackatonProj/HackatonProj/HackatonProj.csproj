@@ -92,6 +92,7 @@
     <Compile Include="Data\Units\Player.cs" />
     <Compile Include="Data\Textures.cs" />
     <Compile Include="Drawing\DrawStuff.cs" />
+    <Compile Include="Drawing\IEventHost.cs" />
     <Compile Include="Drawing\IViewOneObject.cs" />
     <Compile Include="Drawing\IView.cs" />
     <Compile Include="Drawing\StoryPresenter.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Logics\EventCatcher.cs" />
     <Compile Include="Logics\FontLoader.cs" />
     <Compile Include="Logics\GameOverseer.cs" />
+    <Compile Include="Logics\KeyEventResolver.cs" />
     <Compile Include="Logics\Logics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

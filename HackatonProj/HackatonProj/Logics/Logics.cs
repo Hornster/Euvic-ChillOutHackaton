@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HackatonProj.Data;
 using HackatonProj.Drawing;
 using SFML.Graphics;
 using SFML.Window;
@@ -18,8 +19,9 @@ namespace HackatonProj.Logics
         private Action<Drawable> requestDrawSingleObj;
         private Action<Core.gameState> changeState;
         private Action<bool> setWindowThreadActive;
-        
-        StoryPresenter storyPresenter = new StoryPresenter();
+
+        private StoryPresenter storyPresenter = new StoryPresenter();
+        private KeyEventResolver keyEventResolver = new KeyEventResolver();
 
         public Logics(Action<Drawable> drawingMethodRef, Action<Drawable> drawingSingleObjMethodRef,
             Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction)
@@ -35,6 +37,20 @@ namespace HackatonProj.Logics
             setWindowThreadActive(false);//Stop using the window before passing it to presenting thread
            Thread storyPresentingThread = new Thread(PresentStory);
             storyPresentingThread.Start();
+        }
+
+        public void HandleKeyPressedEvent(KeyEventArgs keyArgs)
+        {
+            if (keyEventResolver.ResolveKeyPressedEndProgram(keyArgs))
+            {
+                changeState(Core.gameState.Exit);
+                return;
+            }
+            for (Enums.players player = 0; player < Enums.players.End; player++)
+            {
+                var result = keyEventResolver.ResolveKeyPressedEventPlayers(keyArgs, player);
+                //TODO - send the result, together with player, to GameOverseer in order to make changes in players' speed vector.
+            }
         }
         /// <summary>
         /// Presents the story to the user. Is called as a separate thread.
@@ -52,7 +68,7 @@ namespace HackatonProj.Logics
         }
         public void LaunchGame()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
