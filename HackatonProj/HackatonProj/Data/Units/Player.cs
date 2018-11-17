@@ -13,7 +13,7 @@ namespace HackatonProj.Data.Units
     class Player : ILivingEntity, IColidable
     {
         static int numberOfPlayers;
-        
+        private int LivesCount = 3;
         Enums.players player;
         Sprite playerSprite = new Sprite();
         string name;
@@ -70,9 +70,18 @@ namespace HackatonProj.Data.Units
         public void ReceiveHit(Bullet bullet)
         {
             Health -= bullet.damage;
+            if (Health <= 0)
+            {
+                LivesCount--;
+                if (LivesCount <= 0)
+                {
+                    IsAlive = false;
+                }
+            }
         }
 
         public int Health { get; private set; } = 10;
+        public bool IsAlive { get; private set; }
 
         public Bullet Shoot()
         {

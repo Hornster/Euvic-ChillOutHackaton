@@ -14,11 +14,11 @@ namespace HackatonProj.Logics
     class GameOverseer
     {
         //Place for players
-        List<Player> _listOfPlayers = new List<Player>();
+        private List<Player> _listOfPlayers = new List<Player>();
         //Place for enemies
-        List<IEnemy> _listOfEnemies = new List<IEnemy>();
+        private List<IEnemy> _listOfEnemies = new List<IEnemy>();
         //Place for bullets
-        List<Bullet> _listOfBullets = new List<Bullet>();
+        private List<Bullet> _listOfBullets = new List<Bullet>();
 
         //kill counter... counts kills... when you kill someone it will increse... by one... it's incrementing by one 
         int _killCounter = 0;
@@ -82,6 +82,26 @@ namespace HackatonProj.Logics
             }
 
             ResetEntitiesCurrentVelocity();
+        }
+
+        public void DrawEntities(Action<Drawable> DrawObj)
+        {
+            foreach (Player player in _listOfPlayers)
+            {
+                if(player.IsAlive)
+                    DrawObj(player);
+            }
+
+            foreach (IEnemy enemy in _listOfEnemies)
+            {
+                if (enemy.IsAlive)
+                    DrawObj(enemy);
+            }
+
+            foreach (Bullet bullet in _listOfBullets)
+            {
+                DrawObj(bullet);
+            }
         }
 
         //

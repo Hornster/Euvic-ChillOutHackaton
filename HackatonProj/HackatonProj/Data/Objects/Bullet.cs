@@ -14,15 +14,9 @@ namespace HackatonProj.Data.Objects
     {
         private RectangleShape _shape = new RectangleShape(new Vector2f(3, 10));
         readonly Vector2f velocity = new Vector2f(0.0f, 1000.0f);
-        private int _damage = 1;
 
-        public int damage
-        {
-            get
-            {
-                return damage;
-            }
-        }
+        public int damage { get; } = 1;
+
 
         public Bullet(Enums.players player, Vector2f startingPosition)
         {

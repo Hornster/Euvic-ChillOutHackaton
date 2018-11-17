@@ -47,7 +47,7 @@ namespace HackatonProj.Logics
         public Core()
         {
             DrawStuff drawStuff = new DrawStuff(windowSize, title);
-            _logics = new Logics(drawStuff.DrawObject, drawStuff.DrawSingleObject, ChangeState, drawStuff.SetActive, ChkState);
+            _logics = new Logics(drawStuff, ChangeState, drawStuff.SetActive, ChkState);
 
             eventCatcher = new EventCatcher(drawStuff);
             drawingComponent = drawStuff;
