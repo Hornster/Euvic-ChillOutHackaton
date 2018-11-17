@@ -15,7 +15,7 @@ namespace HackatonProj.Data.Units
         static int numberOfPlayers = 0;
 
         Enums.players player;
-        Sprite playerSprite;
+        Sprite playerSprite = new Sprite();
         string name;
         int _health = 10;
 
@@ -70,11 +70,11 @@ namespace HackatonProj.Data.Units
             }
         }
 
-        public void Shoot()
+        public Bullet Shoot()
         {
             Vector2f position = playerSprite.Position;  
             Vector2f size = new Vector2f(playerSprite.Texture.Size.X, playerSprite.Texture.Size.Y);
-            // something.add(new Bullet(player, new vector2f(position.x + 0.5 * size.x, position.y)))
+            return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X - (float)0.5 * size.X, position.Y));
         }
 
         public RectangleShape GetCollisionBox()

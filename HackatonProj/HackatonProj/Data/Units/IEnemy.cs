@@ -11,5 +11,6 @@ namespace HackatonProj.Data.Units
         void Reset();
         void Update();
         void Launch(float velocity);
+        bool IsAlive { get; }
     }
 }

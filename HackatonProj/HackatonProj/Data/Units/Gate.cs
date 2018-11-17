@@ -13,10 +13,11 @@ namespace HackatonProj.Data.Units
 {
     abstract class Gate : IEnemy
     {
+        protected bool _isAlive = false;
         protected float _velocity = 0;
         protected int _maxHealth = 1;
         protected int _health = 1;
-        protected Sprite gateSprite; 
+        protected Sprite gateSprite = new Sprite(); 
 
         // Moves the gate by a given float vector
         public void Move(Vector2f vector)
@@ -30,7 +31,6 @@ namespace HackatonProj.Data.Units
             gateSprite.Position = vector;
         }
 
-
         // Draws The gate
         public void Draw(RenderTarget target, RenderStates states)
         {
@@ -42,7 +42,7 @@ namespace HackatonProj.Data.Units
             _health -= bullet.damage;
             if (Health <= 0)
                 //throw new NotImplementedException("He is dead, but I don't know what to do :( !");
-                this.Reset(); // Now I know :)
+                this._isAlive = false; // Now I know :)
         }
 
         public int Health
@@ -75,6 +75,15 @@ namespace HackatonProj.Data.Units
         public void Launch(float velocity)
         {
             this._velocity = velocity;
+            this._isAlive = true;
+        }
+
+        public bool IsAlive
+        {
+            get
+            {
+                return _isAlive;
+            }
         }
 
         public RectangleShape GetCollisionBox()
