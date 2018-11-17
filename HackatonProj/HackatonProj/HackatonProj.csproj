@@ -127,6 +127,7 @@
     <Content Include="Textures\AND.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\Background.jpg" />
     <Content Include="Textures\BOSS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

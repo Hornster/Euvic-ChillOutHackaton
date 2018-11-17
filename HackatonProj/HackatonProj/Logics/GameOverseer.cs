@@ -76,7 +76,10 @@ namespace HackatonProj.Logics
                                 EnemyKilled();
                             }
                         }
-                        else if(PhysicsEngine.CheckBorderCollision(enemy))
+                        else if (PhysicsEngine.CheckBorderCollision(enemy) == PhysicsEngine.borderCollision.Down)
+                        {
+
+                        }
                     }
                 }
             }

@@ -21,12 +21,14 @@ namespace HackatonProj.Drawing
         private LinkedList<Tuple<Text, int>> storyPages = new LinkedList<Tuple<Text, int>>();
         private FontLoader fontLoader = new FontLoader();
 
-        private readonly string storyPage1 = "E.U.V.I.C. - Elite Unit of Vindication In Crysis - has sent \n" +
-                                                   "its best Vindicators to help people of AEInf sector and save them \n" +
-                                                   "from cruel fate.";
 
-        private const int showTime = 5;
+        private const int showTime = 0;
         private const int fontSize = 20;
+
+        private readonly string storyPage1 = "E.U.V.I.C. - Elite Unit of Vindication In Crysis - has sent \n" +
+                                             "its best Vindicators to help people of AEInf sector and save them \n" +
+                                             "from cruel fate.";
+
 
         private readonly string storyPage2 = "U.L.A. - the ominous, fearsome Universal Life-form Annihilator \n" +
                                              "the master of Binarium Gates, wants to bury the last sparks of hope \n" +
