@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BackgroundContainer.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\IColidable.cs" />
     <Compile Include="Data\IMovable.cs" />

@@ -15,6 +15,7 @@ namespace HackatonProj.Logics
 {
     class Logics
     {
+        private BackgroundContainer backgroundContainer = new BackgroundContainer(new Vector2f(WindowData.windowSize.X, WindowData.windowSize.Y));
         private bool firstLoop = true;
         private Clock mainClock = new Clock();
         private const float singleFrameTime = 1.0f / 60.0f;
@@ -117,6 +118,7 @@ namespace HackatonProj.Logics
             gameOverseer.PerformGameLoop(mainClock.ElapsedTime);
 
             clearWindow();
+            requestDrawObj(backgroundContainer.GetSprite());
             gameOverseer.DrawEntities(requestDrawObj);
             display();
 
