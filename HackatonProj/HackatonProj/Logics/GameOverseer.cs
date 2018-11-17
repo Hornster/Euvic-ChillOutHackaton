@@ -76,10 +76,9 @@ namespace HackatonProj.Logics
                                 EnemyKilled();
                             }
                         }
-                        else if (PhysicsEngine.CheckBorderCollision(enemy) == PhysicsEngine.borderCollision.Down)
-                        {
 
-                        }
+                        if(PhysicsEngine.CheckBorderCollision(enemy) == PhysicsEngine.borderCollision.Down)
+                            enemy.Reset();
                     }
                 }
             }
@@ -93,6 +92,14 @@ namespace HackatonProj.Logics
                         if (enemy.IsAlive && PhysicsEngine.CheckCollision(player, enemy))
                         {
                             player.ReceiveHit(enemy);
+                        }
+                        if(enemy.IsAlive)
+                        {
+                            PhysicsEngine.borderCollision borderCol = PhysicsEngine.CheckBorderCollision(player);
+                            if (borderCol != PhysicsEngine.borderCollision.None)
+                            {
+                                player.MoveTo(PhysicsEngine.CalcColSolvePlayer(player, borderCol));
+                            }
                         }
                     }
                 }
@@ -193,7 +200,7 @@ namespace HackatonProj.Logics
             {
                 if (!enemy.IsAlive)
                 {
-                    enemy.Respawn(lastFrameTime, timeBetweenSpawns, random.Next(200));
+                    enemy.Respawn(lastFrameTime, timeBetweenSpawns, random.Next(400, 800));
                 }
             }
         }
@@ -226,9 +233,9 @@ namespace HackatonProj.Logics
         public void SpawnULA()
         {
             isUlaSpawned = true;
-            for(int i = _listOfEnemies.Count; i >= 0; i--)
+            for(int i = _listOfEnemies.Count-1; i >= 0; i--)
             {
-                _listOfEnemies.RemoveAt(i);
+                _listOfEnemies[i].Reset();
             }
 
             _listOfEnemies.Add(new ULA());
