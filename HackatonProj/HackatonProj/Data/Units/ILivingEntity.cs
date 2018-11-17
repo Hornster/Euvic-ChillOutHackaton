@@ -14,7 +14,7 @@ namespace HackatonProj.Data.Units
         /// 
         /// </summary>
         void ReceiveHit(Bullet bullet);
-        int health
+        int Health
         {
             get;
         }

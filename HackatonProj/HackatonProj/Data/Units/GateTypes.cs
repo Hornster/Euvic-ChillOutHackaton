@@ -46,7 +46,7 @@ namespace HackatonProj.Data.Units
 
             _health -= bullet.damage;
 
-            if (health <= 0)
+            if (Health <= 0)
                 this.Reset();
             else
             {
@@ -81,7 +81,7 @@ namespace HackatonProj.Data.Units
 
             _health -= bullet.damage;
 
-            if (health <= 0)
+            if (Health <= 0)
                 this.Reset();
             else
             {

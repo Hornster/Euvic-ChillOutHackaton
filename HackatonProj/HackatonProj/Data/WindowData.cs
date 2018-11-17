@@ -9,7 +9,7 @@ namespace HackatonProj.Data
 {
     public struct WindowData
     {
-        public static Vector2i windowSize = new Vector2i(1024, 768);
+        public static Vector2i windowSize = new Vector2i((int)SFML.Window.VideoMode.DesktopMode.Width, (int)SFML.Window.VideoMode.DesktopMode.Height);
         public const string programTitle = "De Vindicators";
     }
 }

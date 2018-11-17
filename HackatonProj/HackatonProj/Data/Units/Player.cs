@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using SFML.Graphics;
 using HackatonProj.Data.Objects;
-using SFML.Window;
+using SFML.System;
 
 namespace HackatonProj.Data.Units
 {
@@ -62,7 +62,7 @@ namespace HackatonProj.Data.Units
                 throw new NotImplementedException();
         }
 
-        public int health
+        public int Health
         {
             get
             {
