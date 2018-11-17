@@ -39,12 +39,12 @@ namespace HackatonProj.Data.Units
         public void ReceiveHit(Bullet bullet)
         {
             _health -= bullet.damage;
-            if (health <= 0)
+            if (Health <= 0)
                 //throw new NotImplementedException("He is dead, but I don't know what to do :( !");
                 this.Reset(); // Now I know :)
         }
 
-        public int health
+        public int Health
         {
             get
             {
