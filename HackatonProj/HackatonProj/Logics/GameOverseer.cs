@@ -13,6 +13,14 @@ namespace HackatonProj.Logics
 {
     class GameOverseer
     {
+        private const int baseSpawnTime = 2;
+        private const float baseSmallestSpawnTime = 0.5f;
+        private const int baseMinEnemiesQuantity = 5;
+        private const int baseMaxEnemiesQuantity = 50;
+
+        private float timeBetweenSpawns = baseSpawnTime;
+
+        private int maxSpawnedEnemies = baseMinEnemiesQuantity;
         //Place for players
         private List<Player> _listOfPlayers = new List<Player>();
         //Place for enemies
@@ -20,7 +28,7 @@ namespace HackatonProj.Logics
         //Place for bullets
         private List<Bullet> _listOfBullets = new List<Bullet>();
 
-        //kill counter... counts kills... when you kill someone it will increse... by one... it's incrementing by one 
+        //kill counter... counts kills... when you kill someone it will increase... by one... it's incrementing by one 
         int _killCounter = 0;
         private const int killsAmount = 50; //Amount of kills required for ULA to spawn.
         private bool isUlaSpawned = false;
@@ -35,12 +43,14 @@ namespace HackatonProj.Logics
         {
             foreach (Player player in _listOfPlayers)
             {
-                player.Move(lastFrameTime);
+                if(player.IsAlive)
+                    player.Move(lastFrameTime);
             }
 
             foreach (IEnemy enemy in _listOfEnemies)
             {
-                enemy.Move(lastFrameTime);
+                if(enemy.IsAlive)
+                    enemy.Move(lastFrameTime);
             }
 
             foreach (Bullet bullet in _listOfBullets)
@@ -48,15 +58,42 @@ namespace HackatonProj.Logics
                 bullet.Move(lastFrameTime);
             }
         }
+        
 
-        private void ResetEntitiesCurrentVelocity()
+        void ChkCollisions()
         {
-            /*foreach (Player player in _listOfPlayers)
+            foreach (var enemy in _listOfEnemies)
             {
-                player.ResetVelocity();
-            }*/
-            
-            //Bullets need no reset as they travel at constant speed. Enemies travel with their own, constant speed, too.
+                if (enemy.IsAlive)
+                {
+                    foreach (var bullet in _listOfBullets)
+                    {
+                        if (PhysicsEngine.CheckCollision(enemy, bullet))
+                        {
+                            enemy.ReceiveHit(bullet);
+                            if (!enemy.IsAlive)
+                            {
+                                EnemyKilled();
+                            }
+                        }
+                        else if(PhysicsEngine.CheckBorderCollision(enemy))
+                    }
+                }
+            }
+
+            foreach (var player in _listOfPlayers)
+            {
+                if (player.IsAlive)
+                {
+                    foreach (var enemy in _listOfEnemies)
+                    {
+                        if (enemy.IsAlive && PhysicsEngine.CheckCollision(player, enemy))
+                        {
+                            player.ReceiveHit(enemy);
+                        }
+                    }
+                }
+            }
         }
 
         public void ModifyPlayerMoveState(Vector2i directionVector, Enums.players player)
@@ -77,16 +114,17 @@ namespace HackatonProj.Logics
         public void PerformGameLoop(Time lastFrameTime)
         {
             UpdateEntitiesMovement(lastFrameTime);
-            
+            ChkCollisions();
 
             if (_killCounter >= killsAmount && !isUlaSpawned)
             {
                 SpawnULA();
-                
             }
-            
-
-            ResetEntitiesCurrentVelocity();
+            else
+            {
+                ModifyWave();
+                RespawnWave(lastFrameTime.AsSeconds());
+            }
         }
 
         public void DrawEntities(Action<Drawable> DrawObj)
@@ -106,6 +144,54 @@ namespace HackatonProj.Logics
             {
                 if (enemy.IsAlive)
                     DrawObj(enemy);
+            }
+        }
+
+        private void ModifyWave()
+        {
+            if (_listOfEnemies.Count < maxSpawnedEnemies)
+            {
+                Random randomGenerator = new Random();
+                if (_killCounter % 3 == 0)
+                {
+                    switch (randomGenerator.Next(0, 1))
+                    {
+                        case 0:
+                            _listOfEnemies.Add(new And());
+                            break;
+                        case 1:
+                            _listOfEnemies.Add(new Or());
+                            break;
+                        default: throw new Exception("WTF !? in EnemyKilled() #1");
+                    }
+                }
+                else if (_killCounter % 5 == 0)
+                {
+                    switch (randomGenerator.Next(0, 1))
+                    {
+                        case 0:
+                            _listOfEnemies.Add(new Nand());
+                            break;
+                        case 1:
+                            _listOfEnemies.Add(new Nor());
+                            break;
+                        default: throw new Exception("WTF !? in EnemyKilled() #2");
+                    }
+                }
+
+                _listOfEnemies.Last().Launch(randomGenerator.Next(100));
+            }
+        }
+
+        private void RespawnWave(float lastFrameTime)
+        {
+            Random random = new Random();
+            foreach (var enemy in _listOfEnemies)
+            {
+                if (!enemy.IsAlive)
+                {
+                    enemy.Respawn(lastFrameTime, timeBetweenSpawns, random.Next(200));
+                }
             }
         }
 
@@ -148,30 +234,16 @@ namespace HackatonProj.Logics
 
         public void EnemyKilled()
         {
-            Random randomGenerator = new Random();
-
             IncrementKillCount();
+            if (maxSpawnedEnemies < baseMaxEnemiesQuantity)
+            {
+                maxSpawnedEnemies++;
+            }
 
-            if(_killCounter % 3 == 0)
+            if (timeBetweenSpawns < baseSmallestSpawnTime)
             {
-                switch(randomGenerator.Next(0,1))
-                {
-                    case 0: _listOfEnemies.Add(new And()); break;
-                    case 1: _listOfEnemies.Add(new Or()); break;
-                    default: throw new Exception("WTF !? in EnemyKilled() #1");
-                }
+                timeBetweenSpawns -= 0.05f;
             }
-            else
-            if(_killCounter % 5 == 0)
-            {
-                switch (randomGenerator.Next(0, 1))
-                {
-                    case 0: _listOfEnemies.Add(new Nand()); break;
-                    case 1: _listOfEnemies.Add(new Nor()); break;
-                    default: throw new Exception("WTF !? in EnemyKilled() #2");
-                }
-            }
-            _listOfEnemies.Last().Launch(randomGenerator.Next(100));
         }
     }
 }

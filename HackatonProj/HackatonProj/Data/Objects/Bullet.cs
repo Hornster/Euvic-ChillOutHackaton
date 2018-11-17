@@ -50,8 +50,8 @@ namespace HackatonProj.Data.Objects
 
         public FloatRect GetCollisionBox()
         {
-            Vector2f position = new Vector2f(_shape.TextureRect.Width, _shape.TextureRect.Height);
-            Vector2f size = new Vector2f(_shape.TextureRect.Left, _shape.TextureRect.Top);
+            Vector2f position = new Vector2f(_shape.Position.X, _shape.Position.Y);
+            Vector2f size = new Vector2f(_shape.Size.X, _shape.Size.Y);
             FloatRect tmp = new FloatRect(position, size);
 
             return tmp;
