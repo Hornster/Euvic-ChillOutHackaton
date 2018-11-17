@@ -11,7 +11,7 @@ namespace HackatonProj.Logics
     class FontLoader
     {
         private Font usedFont;
-        private readonly string fontFilePath = "gameFont.fon";
+        private readonly string fontFilePath = "gameFont.ttf";
 
         public Font GetFont()
         {
