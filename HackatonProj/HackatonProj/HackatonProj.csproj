@@ -106,6 +106,7 @@
     <Compile Include="Logics\GameOverseer.cs" />
     <Compile Include="Logics\KeyEventResolver.cs" />
     <Compile Include="Logics\Logics.cs" />
+    <Compile Include="Logics\TimeCounter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

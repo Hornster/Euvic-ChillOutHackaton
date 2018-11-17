@@ -13,7 +13,7 @@ namespace HackatonProj.Data
     {
         Sprite sprite;
 
-        public BackgroundContainer(Vector2f windowSize)
+        public void IniBg(Vector2f windowSize)
         {
             sprite = new Sprite(Textures.BgTexture);
             sprite.Texture.Repeated = true;
@@ -22,6 +22,7 @@ namespace HackatonProj.Data
             float factorY = windowSize.Y / sprite.GetLocalBounds().Width;
             float result = (factorX > factorY ? factorX : factorY);
             sprite.Scale = new Vector2f(result, result);
+        
         }
 
         public Sprite GetSprite()

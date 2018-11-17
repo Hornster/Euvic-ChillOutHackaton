@@ -15,7 +15,8 @@ namespace HackatonProj.Logics
 {
     class Logics
     {
-        private BackgroundContainer backgroundContainer = new BackgroundContainer(new Vector2f(WindowData.windowSize.X, WindowData.windowSize.Y));
+        private TimeCounter timeCounter = new TimeCounter();
+        private BackgroundContainer backgroundContainer = new BackgroundContainer();
         private bool firstLoop = true;
         private Clock mainClock = new Clock();
         private const float singleFrameTime = 1.0f / 60.0f;
@@ -42,6 +43,7 @@ namespace HackatonProj.Logics
 
             this.setWindowThreadActive = setWindowThreadActiveAction;
             ChkCurrentState = ChkCurrentStateFunc;
+            backgroundContainer.IniBg(new Vector2f(WindowData.windowSize.X, WindowData.windowSize.Y));
         }
         
         public void StartPresentingStory()
@@ -62,6 +64,7 @@ namespace HackatonProj.Logics
             if (keyEventResolver.ResolveKeyPressedResetState(keyArgs))
             {
                 gameOverseer.ResetState();
+                timeCounter.ResetTimer();
             }
             for (Enums.players player = 0; player < Enums.players.End; player++)
             {
@@ -105,6 +108,12 @@ namespace HackatonProj.Logics
             setWindowThreadActive(false);//Deactivate the window before switching to next thread.
             changeState(Core.gameState.StopPresentingStory);
         }
+
+        private void ManageCounter(Time elapsedTime)
+        {
+            timeCounter.AddTime(elapsedTime.AsSeconds());
+            requestDrawObj(timeCounter.GetTimeCounter());
+        }
         public void PerformGameLoop()
         {
             SetMax60FPS();
@@ -119,6 +128,7 @@ namespace HackatonProj.Logics
 
             clearWindow();
             requestDrawObj(backgroundContainer.GetSprite());
+            ManageCounter(mainClock.ElapsedTime);
             gameOverseer.DrawEntities(requestDrawObj);
             display();
 

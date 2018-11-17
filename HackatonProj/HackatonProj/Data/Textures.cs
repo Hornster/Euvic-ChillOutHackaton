@@ -22,7 +22,7 @@ namespace HackatonProj.Data
         static private Texture _NandTexture2    = new Texture(texturesPlacement + "NAND1-2.png");
         static private Texture _Player1Texture  = new Texture(texturesPlacement + "Player0.png");
         static private Texture _Player2Texture  = new Texture(texturesPlacement + "Player1.png");
-        static private Texture _BgTexture = new Texture(texturesPlacement + "Background.jpg");
+        static private Texture _BgTexture = new Texture(texturesPlacement + "Background.png");
 
         static public Texture BossTexture       { get { return _BossTexture; } }
         static public Texture OrTexture         { get { return _OrTexture; } }
