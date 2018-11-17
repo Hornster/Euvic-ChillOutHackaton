@@ -12,8 +12,11 @@ namespace HackatonProj.Data.Units
 {
     class ULA : IEnemy
     {
-        private Sprite _ULASprite;
-        private int _health = 10;
+        private bool    _isAlive    = false;
+        private Sprite  _ULASprite  = new Sprite();
+        private int     _health     = 10;
+
+        //IEnemy methods
 
         public void Reset()
         {
@@ -28,7 +31,7 @@ namespace HackatonProj.Data.Units
 
         public void Launch(float velocity)
         {
-
+            this._isAlive = true;
         }
 
         public void ReceiveHit(Bullet bullet)
@@ -36,15 +39,7 @@ namespace HackatonProj.Data.Units
             _health -= bullet.damage;
             if(_health <= 0)
             {
-                Reset();
-            }
-        }
-
-        public int Health
-        {
-            get
-            {
-                return 0;
+                this._isAlive = false;
             }
         }
 
@@ -65,6 +60,24 @@ namespace HackatonProj.Data.Units
             RectangleShape tmp = new RectangleShape(new Vector2f(136, 73));
             tmp.Position = position + new Vector2f(62, 47);
             return tmp;
+        }
+
+        //properties
+
+        public int Health
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public bool IsAlive
+        {
+            get
+            {
+                return _isAlive;
+            }
         }
 
         // Relative position of the collision box 62 47

@@ -15,7 +15,7 @@ namespace HackatonProj.Data.Units
         static int numberOfPlayers;
         
         Enums.players player;
-        Sprite playerSprite;
+        Sprite playerSprite = new Sprite();
         string name;
         readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
         Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
@@ -71,11 +71,11 @@ namespace HackatonProj.Data.Units
 
         public int Health { get; private set; } = 10;
 
-        public void Shoot()
+        public Bullet Shoot()
         {
             Vector2f position = playerSprite.Position;  
             Vector2f size = new Vector2f(playerSprite.Texture.Size.X, playerSprite.Texture.Size.Y);
-            // something.add(new Bullet(player, new vector2f(position.x + 0.5 * size.x, position.y)))
+            return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X - (float)0.5 * size.X, position.Y));
         }
 
         public RectangleShape GetCollisionBox()

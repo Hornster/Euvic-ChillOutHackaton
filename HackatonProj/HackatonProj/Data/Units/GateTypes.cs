@@ -47,7 +47,7 @@ namespace HackatonProj.Data.Units
             _health -= bullet.damage;
 
             if (Health <= 0)
-                this.Reset();
+                this._isAlive = false;
             else
             {
                 this.gateSprite.Texture = Textures.NandTexture2;
@@ -82,7 +82,7 @@ namespace HackatonProj.Data.Units
             _health -= bullet.damage;
 
             if (Health <= 0)
-                this.Reset();
+                this._isAlive = false;
             else
             {
                 this.gateSprite.Texture = Textures.NorTexture2;
