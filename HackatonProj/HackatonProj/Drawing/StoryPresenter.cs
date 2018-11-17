@@ -37,15 +37,19 @@ namespace HackatonProj.Drawing
         private readonly string storyPage4 = "MAY THE GC BE WITH YOU! \n" +
                                              "Good luck.";
 
-        private Text storyline;
+        private Text CreateText(string text, Font font, int charSize, Color fillColor)
+        {
+            Text storyline = new Text(storyPage1, fontLoader.GetFont(), fontSize);
+            storyline.FillColor = fillColor;
 
+            return new Text(storyline);
+        }
         public StoryPresenter()
         {
-            storyline = new Text("", fontLoader.GetFont(), fontSize);
-            storyPages.AddLast(Tuple.Create(new Text(storyPage1, fontLoader.GetFont(), fontSize), showTime));
-            storyPages.AddLast(Tuple.Create(new Text(storyPage2, fontLoader.GetFont(), fontSize), showTime));
-            storyPages.AddLast(Tuple.Create(new Text(storyPage3, fontLoader.GetFont(), fontSize), showTime));
-            storyPages.AddLast(Tuple.Create(new Text(storyPage4, fontLoader.GetFont(), fontSize), showTime));
+            storyPages.AddLast(Tuple.Create(CreateText(storyPage1, fontLoader.GetFont(), fontSize, Color.White), showTime));
+            storyPages.AddLast(Tuple.Create(CreateText(storyPage2, fontLoader.GetFont(), fontSize, Color.White), showTime));
+            storyPages.AddLast(Tuple.Create(CreateText(storyPage3, fontLoader.GetFont(), fontSize, Color.White), showTime));
+            storyPages.AddLast(Tuple.Create(CreateText(storyPage4, fontLoader.GetFont(), fontSize, Color.White), showTime));
         }
         
 

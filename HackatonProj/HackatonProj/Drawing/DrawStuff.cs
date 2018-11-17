@@ -36,11 +36,18 @@ namespace HackatonProj.Drawing
             window.Display();
         }
 
+        public void SetActive(bool isActive)
+        {
+            window.SetActive(isActive);
+        }
+
         public void DrawSingleObject(Drawable obj)
         {
             ClearView();
             DrawObject(obj);
             Display();
         }
+        
+
     }
 }
