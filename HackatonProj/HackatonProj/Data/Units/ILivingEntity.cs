@@ -18,6 +18,8 @@ namespace HackatonProj.Data.Units
         {
             get;
         }
+
+        bool IsAlive { get; }
         
     }
     

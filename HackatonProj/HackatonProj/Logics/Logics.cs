@@ -21,19 +21,23 @@ namespace HackatonProj.Logics
         private Action<Drawable> requestDrawSingleObj;
         private Action<Core.gameState> changeState;
         private Action<bool> setWindowThreadActive;
+        private Action clearWindow;
+        private Action display;
         private Func<Core.gameState> ChkCurrentState;
 
         private StoryPresenter      storyPresenter      = new StoryPresenter();
         private KeyEventResolver    keyEventResolver    = new KeyEventResolver();
         private GameOverseer        gameOverseer        = new GameOverseer();
 
-        public Logics(Action<Drawable> drawingMethodRef, Action<Drawable> drawingSingleObjMethodRef,
-            Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction,
-                Func<Core.gameState> ChkCurrentStateFunc)
+        public Logics(DrawStuff drawStuff, Action<Core.gameState> changeStateMethodRef, 
+            Action<bool> setWindowThreadActiveAction, Func<Core.gameState> ChkCurrentStateFunc)
         {
-            requestDrawObj = drawingMethodRef;
+            requestDrawObj = drawStuff.DrawObject;
             changeState = changeStateMethodRef;
-            requestDrawSingleObj = drawingSingleObjMethodRef;
+            requestDrawSingleObj = drawStuff.DrawSingleObject;
+            clearWindow = drawStuff.ClearView;
+            display = drawStuff.Display;
+
             this.setWindowThreadActive = setWindowThreadActiveAction;
             ChkCurrentState = ChkCurrentStateFunc;
         }
@@ -84,6 +88,11 @@ namespace HackatonProj.Logics
             }
 
             gameOverseer.PerformGameLoop(mainClock.ElapsedTime);
+
+            clearWindow();
+            gameOverseer.DrawEntities(requestDrawObj);
+            display();
+
             mainClock.Restart();
         }
     }
