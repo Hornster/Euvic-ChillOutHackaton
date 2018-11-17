@@ -10,7 +10,6 @@ using HackatonProj.Drawing;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using SFML.Window;
 
 namespace HackatonProj.Logics
 {
@@ -24,9 +23,9 @@ namespace HackatonProj.Logics
         private Action<bool> setWindowThreadActive;
         private Func<Core.gameState> ChkCurrentState;
 
-        private StoryPresenter storyPresenter = new StoryPresenter();
-        private KeyEventResolver keyEventResolver = new KeyEventResolver();
-        private GameOverseer gameOverseer = new GameOverseer();
+        private StoryPresenter      storyPresenter      = new StoryPresenter();
+        private KeyEventResolver    keyEventResolver    = new KeyEventResolver();
+        private GameOverseer        gameOverseer        = new GameOverseer();
 
         public Logics(Action<Drawable> drawingMethodRef, Action<Drawable> drawingSingleObjMethodRef,
             Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction,

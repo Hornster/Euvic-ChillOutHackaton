@@ -80,6 +80,7 @@ namespace HackatonProj.Logics
                 SpawnULA();
                 
             }
+            
 
             ResetEntitiesCurrentVelocity();
         }

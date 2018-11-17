@@ -20,7 +20,7 @@ namespace HackatonProj.Data.Objects
         {
             get
             {
-                return damage;
+                return _damage;
             }
         }
 
