@@ -18,6 +18,7 @@ namespace HackatonProj.Data.Units
         {
             get;
         }
+        RectangleShape GetCollisionBox();
         
     }
     

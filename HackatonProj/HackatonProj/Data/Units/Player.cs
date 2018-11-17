@@ -76,5 +76,12 @@ namespace HackatonProj.Data.Units
             Vector2f size = new Vector2f(playerSprite.Texture.Size.X, playerSprite.Texture.Size.Y);
             // something.add(new Bullet(player, new vector2f(position.x + 0.5 * size.x, position.y)))
         }
+
+        public RectangleShape GetCollisionBox()
+        {
+            RectangleShape tmp = new RectangleShape(new Vector2f(playerSprite.TextureRect.Width, playerSprite.TextureRect.Height));
+            tmp.Position = playerSprite.Position;
+            return tmp;
+        }
     }
 }
