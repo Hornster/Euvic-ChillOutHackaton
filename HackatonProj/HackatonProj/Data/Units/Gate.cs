@@ -71,7 +71,7 @@ namespace HackatonProj.Data.Units
 
             this._velocity = 0;
             this._health = _maxHealth;
-            this.gateSprite.Position = new Vector2f(-100, (float)r.Next(WindowData.windowSize.X));
+            this.gateSprite.Position = new Vector2f((float)r.Next(WindowData.windowSize.X), 0);
         }
 
         public void Update()
