@@ -93,10 +93,11 @@ namespace HackatonProj.Data.Units
             }
         }
 
-        public RectangleShape GetCollisionBox()
+        public FloatRect GetCollisionBox()
         {
-            RectangleShape tmp = new RectangleShape(new Vector2f(gateSprite.TextureRect.Width, gateSprite.TextureRect.Height));
-            tmp.Position = gateSprite.Position;
+            Vector2f position = new Vector2f(gateSprite.TextureRect.Width, gateSprite.TextureRect.Height);
+            Vector2f size = new Vector2f(gateSprite.TextureRect.Left, gateSprite.TextureRect.Top);
+            FloatRect tmp = new FloatRect(position, size);
             return tmp;
         }
     }

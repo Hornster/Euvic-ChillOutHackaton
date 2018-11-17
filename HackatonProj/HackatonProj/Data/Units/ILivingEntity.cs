@@ -8,7 +8,7 @@ using SFML.Graphics;
 
 namespace HackatonProj.Data.Units
 {
-    interface ILivingEntity : IMovable, Drawable
+    interface ILivingEntity : IMovable, Drawable, IColidable
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace HackatonProj.Data.Units
         {
             get;
         }
-        RectangleShape GetCollisionBox();
+        
     }
     
 }

@@ -81,9 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Enums.cs" />
+    <Compile Include="Data\IColidable.cs" />
     <Compile Include="Data\IMovable.cs" />
     <Compile Include="Data\Objects\Bullet.cs" />
     <Compile Include="Data\Objects\IProjectile.cs" />
+    <Compile Include="Data\PhysicsEngine.cs" />
     <Compile Include="Data\Units\ULA.cs" />
     <Compile Include="Data\WindowData.cs" />
     <Compile Include="Data\Units\Gate.cs" />
