@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using HackatonProj.Data;
 using SFML.Graphics;
-using SFML.System;
 using SFML.Window;
 
 namespace HackatonProj.Drawing

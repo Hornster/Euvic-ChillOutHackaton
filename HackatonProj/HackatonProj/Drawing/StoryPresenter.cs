@@ -40,7 +40,7 @@ namespace HackatonProj.Drawing
         private Text CreateText(string text, Font font, int charSize, Color fillColor)
         {
             Text storyline = new Text(storyPage1, fontLoader.GetFont(), fontSize);
-            storyline.FillColor = fillColor;
+            storyline.Color = fillColor;
 
             return new Text(storyline);
         }
