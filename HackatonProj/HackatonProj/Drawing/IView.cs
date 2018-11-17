@@ -24,5 +24,7 @@ namespace HackatonProj.Drawing
         /// Shows drawn stuff on the screen.
         /// </summary>
         void Display();
+
+        void SetActive(bool isActive);
     }
 }

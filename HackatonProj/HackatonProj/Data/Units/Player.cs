@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SFML.System;
 using SFML.Graphics;
 using HackatonProj.Data.Objects;
+using SFML.Window;
 
 namespace HackatonProj.Data.Units
 {

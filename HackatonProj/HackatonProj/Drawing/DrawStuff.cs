@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using HackatonProj.Data;
 using SFML.Graphics;
-using SFML.System;
 using SFML.Window;
 
 namespace HackatonProj.Drawing
@@ -36,11 +35,18 @@ namespace HackatonProj.Drawing
             window.Display();
         }
 
+        public void SetActive(bool isActive)
+        {
+            window.SetActive(isActive);
+        }
+
         public void DrawSingleObject(Drawable obj)
         {
             ClearView();
             DrawObject(obj);
             Display();
         }
+        
+
     }
 }

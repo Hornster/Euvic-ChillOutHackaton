@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using HackatonProj.Drawing;
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 
 namespace HackatonProj.Logics
 {
@@ -16,20 +17,22 @@ namespace HackatonProj.Logics
         private Action<Drawable> requestDrawObj;
         private Action<Drawable> requestDrawSingleObj;
         private Action<Core.gameState> changeState;
+        private Action<bool> setWindowThreadActive;
         
         StoryPresenter storyPresenter = new StoryPresenter();
 
         public Logics(Action<Drawable> drawingMethodRef, Action<Drawable> drawingSingleObjMethodRef,
-            Action<Core.gameState> changeStateMethodRef)
+            Action<Core.gameState> changeStateMethodRef, Action<bool> setWindowThreadActiveAction)
         {
             requestDrawObj = drawingMethodRef;
             changeState = changeStateMethodRef;
             requestDrawSingleObj = drawingSingleObjMethodRef;
+            this.setWindowThreadActive = setWindowThreadActiveAction;
         }
-
         
         public void StartPresentingStory()
         {
+            setWindowThreadActive(false);//Stop using the window before passing it to presenting thread
            Thread storyPresentingThread = new Thread(PresentStory);
             storyPresentingThread.Start();
         }
@@ -38,13 +41,14 @@ namespace HackatonProj.Logics
         /// </summary>
         private void PresentStory()
         {
+            setWindowThreadActive(true);//In SFML only one thread at any given time can have the window active.
             foreach (var page in storyPresenter)
             {
                 requestDrawSingleObj(page.Item1);
                 storyPresenter.WaitForNextPage((page.Item2));
             }
-
-            changeState(Core.gameState.Playing);
+            setWindowThreadActive(false);//Deactivate the window before switching to next thread.
+            changeState(Core.gameState.StopPresentingStory);
         }
         public void LaunchGame()
         {

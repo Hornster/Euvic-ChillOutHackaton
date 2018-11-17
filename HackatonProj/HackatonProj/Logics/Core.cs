@@ -21,7 +21,7 @@ namespace HackatonProj.Logics
         /// Playing - main loop of the game is being performed.
         /// Exit - game is about to be terminated.
         /// </summary>
-        public enum gameState { IsPresentingStory, StartPresentingStory, Playing, Exit }
+        public enum gameState { IsPresentingStory, StartPresentingStory, StopPresentingStory,Playing, Exit }
 
         private gameState currentState = gameState.StartPresentingStory;
 
@@ -33,7 +33,7 @@ namespace HackatonProj.Logics
         public Core()
         {
             DrawStuff drawStuff = new DrawStuff(windowSize, title);
-            _logics = new Logics(drawStuff.DrawObject, drawStuff.DrawSingleObject, ChangeState);
+            _logics = new Logics(drawStuff.DrawObject, drawStuff.DrawSingleObject, ChangeState, drawStuff.SetActive);
 
             drawingComponent = drawStuff;
         }
@@ -56,6 +56,11 @@ namespace HackatonProj.Logics
                         break;
                     case gameState.IsPresentingStory:
                         //TODO - catch events here
+                        break;
+                    case gameState.StopPresentingStory:
+                        //Semi state - main thread regains control over the window here.
+                        drawingComponent.SetActive(true);
+                        ChangeState(gameState.Playing);
                         break;
                     case gameState.Playing:
                         _logics.LaunchGame();
