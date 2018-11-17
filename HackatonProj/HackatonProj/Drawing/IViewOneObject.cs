@@ -18,5 +18,7 @@ namespace HackatonProj.Drawing
         /// </summary>
         /// <param name="obj">Object to draw and display immediately after.</param>
         void DrawSingleObject(Drawable obj);
+
+        void SetActive();
     }
 }
