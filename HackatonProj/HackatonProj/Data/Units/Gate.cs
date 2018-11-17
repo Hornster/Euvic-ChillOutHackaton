@@ -45,7 +45,7 @@ namespace HackatonProj.Data.Units
             gateSprite.Draw(target, states);
         }
 
-        public void ReceiveHit(Bullet bullet)
+        public virtual void ReceiveHit(Bullet bullet)
         {
             _health -= bullet.damage;
             if (Health <= 0)

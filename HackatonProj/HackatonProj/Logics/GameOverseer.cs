@@ -28,6 +28,12 @@ namespace HackatonProj.Logics
         //Place for bullets
         private List<Bullet> _listOfBullets = new List<Bullet>();
 
+        private void ResetState()
+        {
+            timeBetweenSpawns = baseSpawnTime;
+            maxSpawnedEnemies = baseMinEnemiesQuantity;
+
+        }
         //kill counter... counts kills... when you kill someone it will increase... by one... it's incrementing by one 
         int _killCounter = 0;
         private const int killsAmount = 50; //Amount of kills required for ULA to spawn.

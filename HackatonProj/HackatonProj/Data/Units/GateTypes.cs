@@ -39,7 +39,7 @@ namespace HackatonProj.Data.Units
             _maxHealth = 2;
         }
 
-        public new void ReceiveHit(Bullet bullet)
+        public override void ReceiveHit(Bullet bullet)
         {
             if (bullet.Player != _vulnerableToPlayer)
                 return;
@@ -47,7 +47,10 @@ namespace HackatonProj.Data.Units
             _health -= bullet.damage;
 
             if (Health <= 0)
+            {
                 this._isAlive = false;
+                Reset();
+            }
             else
             {
                 this.gateSprite.Texture = Textures.NandTexture2;
@@ -74,7 +77,7 @@ namespace HackatonProj.Data.Units
             _maxHealth = 2;
         }
 
-        public new void ReceiveHit(Bullet bullet)
+        public override void ReceiveHit(Bullet bullet)
         {
             if (bullet.Player != _vulnerableToPlayer)
                 return;
@@ -82,7 +85,10 @@ namespace HackatonProj.Data.Units
             _health -= bullet.damage;
 
             if (Health <= 0)
+            {
                 this._isAlive = false;
+                Reset();
+            }
             else
             {
                 this.gateSprite.Texture = Textures.NorTexture2;
