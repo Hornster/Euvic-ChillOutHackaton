@@ -29,7 +29,7 @@ namespace HackatonProj.Data.Units
 
     class Nand : Gate
     {
-        private Enums.players _vulnerableToPlayer = Enums.players.Player1;
+        private Enums.players _vulnerableToPlayer = Enums.players.Player2;
 
         public Nand()
             : base()
@@ -54,7 +54,7 @@ namespace HackatonProj.Data.Units
             else
             {
                 this.gateSprite.Texture = Textures.NandTexture2;
-                this._vulnerableToPlayer = Enums.players.Player2;
+                this._vulnerableToPlayer = Enums.players.Player1;
             }
         }
 
@@ -62,13 +62,13 @@ namespace HackatonProj.Data.Units
         {
             base.Reset();
             this.gateSprite.Texture = Textures.NandTexture;
-            this._vulnerableToPlayer = Enums.players.Player1;
+            this._vulnerableToPlayer = Enums.players.Player2;
         }
     }
 
     class Nor : Gate
     {
-        private Enums.players _vulnerableToPlayer = Enums.players.Player2;
+        private Enums.players _vulnerableToPlayer = Enums.players.Player1;
         public Nor()
             : base()
         {
@@ -92,7 +92,7 @@ namespace HackatonProj.Data.Units
             else
             {
                 this.gateSprite.Texture = Textures.NorTexture2;
-                this._vulnerableToPlayer = Enums.players.Player1;
+                this._vulnerableToPlayer = Enums.players.Player2;
             }
         }
 
@@ -100,7 +100,7 @@ namespace HackatonProj.Data.Units
         {
             base.Reset();
             this.gateSprite.Texture = Textures.NorTexture;
-            this._vulnerableToPlayer = Enums.players.Player2;
+            this._vulnerableToPlayer = Enums.players.Player1;
         }
     }
 }

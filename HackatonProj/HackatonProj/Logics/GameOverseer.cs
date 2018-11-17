@@ -28,10 +28,40 @@ namespace HackatonProj.Logics
         //Place for bullets
         private List<Bullet> _listOfBullets = new List<Bullet>();
 
-        private void ResetState()
+        private void PrepareTables()
         {
+            _listOfBullets = new List<Bullet>();
+            _listOfEnemies = new List<IEnemy>();
+            _listOfPlayers = new List<Player>();
+
+            _listOfEnemies.Add(new And());
+            _listOfEnemies.Add(new Or());
+            _listOfEnemies.Add(new Nand());
+            _listOfEnemies.Add(new Nor());
+
+            Random randomGenerator = new Random();
+
+            foreach (IEnemy enemy in _listOfEnemies)
+            {
+                enemy.Launch(randomGenerator.Next(100));
+            }
+
+            _listOfPlayers.Add(new Player("Owlosiony Czarodziej"));
+            _listOfPlayers.Add(new Player("Sqrt(i)"));
+
+            foreach (Player player in _listOfPlayers)
+            {
+                player.MoveTo(new Vector2f(WindowData.windowSize.X * (float)0.5, WindowData.windowSize.Y - 128));
+            }
+        }
+        public void ResetState()
+        {
+            Player.ResetNumberOfPlayers();
             timeBetweenSpawns = baseSpawnTime;
             maxSpawnedEnemies = baseMinEnemiesQuantity;
+            isUlaSpawned = false;
+            PrepareTables();
+            _killCounter = 0;
 
         }
         //kill counter... counts kills... when you kill someone it will increase... by one... it's incrementing by one 
@@ -215,25 +245,7 @@ namespace HackatonProj.Logics
         //Sets players & enemies
         public GameOverseer()
         {
-            _listOfEnemies.Add(new And());
-            _listOfEnemies.Add(new Or());
-            _listOfEnemies.Add(new Nand());
-            _listOfEnemies.Add(new Nor());
-
-            Random randomGenerator = new Random();
-
-            foreach (IEnemy enemy in _listOfEnemies)
-            {
-                enemy.Launch(randomGenerator.Next(100));
-            }
-
-            _listOfPlayers.Add(new Player("Owlosiony Czarodziej"));
-            _listOfPlayers.Add(new Player("Sqrt(i)"));
-
-            foreach(Player player in _listOfPlayers)
-            {
-                player.MoveTo(new Vector2f(WindowData.windowSize.X * (float)0.5, WindowData.windowSize.Y - 128));
-            }
+            PrepareTables();
         }
 
         public void SpawnULA()
@@ -245,7 +257,7 @@ namespace HackatonProj.Logics
             }
 
             _listOfEnemies.Add(new ULA());
-            _listOfEnemies.Last().Launch(20);
+            _listOfEnemies.Last().Launch(200);
         }
 
         public void EnemyKilled()

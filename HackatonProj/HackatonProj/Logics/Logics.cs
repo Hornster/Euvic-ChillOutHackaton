@@ -57,6 +57,11 @@ namespace HackatonProj.Logics
                 changeState(Core.gameState.Exit);
                 return;
             }
+
+            if (keyEventResolver.ResolveKeyPressedResetState(keyArgs))
+            {
+                gameOverseer.ResetState();
+            }
             for (Enums.players player = 0; player < Enums.players.End; player++)
             {
                 var result = keyEventResolver.ResolveKeyPressedEventPlayers(keyArgs, player);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace HackatonProj.Data
         static private Texture _NandTexture2    = new Texture(texturesPlacement + "NAND1-2.png");
         static private Texture _Player1Texture  = new Texture(texturesPlacement + "Player0.png");
         static private Texture _Player2Texture  = new Texture(texturesPlacement + "Player1.png");
+        static private Texture _BgTexture = new Texture(texturesPlacement + "BackgroundWorker.jpg");
 
         static public Texture BossTexture       { get { return _BossTexture; } }
         static public Texture OrTexture         { get { return _OrTexture; } }
@@ -31,5 +33,9 @@ namespace HackatonProj.Data
         static public Texture NandTexture2      { get { return _NandTexture2; } }
         static public Texture Player1Texture    { get { return _Player1Texture; } }
         static public Texture Player2Texture    { get { return _Player2Texture; } }
+        static public Texture BgTexture{
+            get { return _BgTexture; }
+        }
     }
 }
+            

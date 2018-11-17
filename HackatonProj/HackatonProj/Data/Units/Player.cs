@@ -12,6 +12,7 @@ namespace HackatonProj.Data.Units
 {
     class Player : ILivingEntity, IColidable
     {
+        const int maxLivesCount = 3;
         static int numberOfPlayers;
         private int LivesCount = 3;
         Enums.players player;
@@ -20,9 +21,9 @@ namespace HackatonProj.Data.Units
         readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
         Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
 
-        private void ResetPlayer()
+        public static void ResetNumberOfPlayers()
         {
-
+            numberOfPlayers = 0;
         }
         public void MultiplyVelocity(Vector2i directionVector)
         {
@@ -76,7 +77,6 @@ namespace HackatonProj.Data.Units
             if (Health <= 0)
             {
                 LivesCount--;
-                ResetPlayer();
                 if (LivesCount <= 0)
                 {
                     IsAlive = false;
