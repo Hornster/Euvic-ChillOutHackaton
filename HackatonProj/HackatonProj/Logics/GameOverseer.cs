@@ -51,20 +51,24 @@ namespace HackatonProj.Logics
 
         private void ResetEntitiesCurrentVelocity()
         {
-            foreach (Player player in _listOfPlayers)
+            /*foreach (Player player in _listOfPlayers)
             {
                 player.ResetVelocity();
-            }
+            }*/
             
             //Bullets need no reset as they travel at constant speed. Enemies travel with their own, constant speed, too.
         }
 
-
-        public void ModifyPlayerMoveShotState(Tuple<Vector2i, bool> movementAndShot, Enums.players player)
+        public void ModifyPlayerMoveState(Vector2i directionVector, Enums.players player)
         {
-            _listOfPlayers[(int)player].MultiplyVelocity(movementAndShot.Item1);
-
-            if (movementAndShot.Item2) //If the player fired a bullet, add it to listOfBullets
+            if (_listOfPlayers[(int) player].IsAlive)
+            {
+                _listOfPlayers[(int) player].MultiplyVelocity(directionVector);
+            }
+        }
+        public void ModifyPlayerShotState(bool isShooting, Enums.players player)
+        {
+            if (isShooting && _listOfPlayers[(int)player].IsAlive) //If the player fired a bullet, add it to listOfBullets
             {
                 _listOfBullets.Add(_listOfPlayers[(int)player].Shoot());
             }
@@ -87,6 +91,11 @@ namespace HackatonProj.Logics
 
         public void DrawEntities(Action<Drawable> DrawObj)
         {
+            foreach (Bullet bullet in _listOfBullets)
+            {
+                DrawObj(bullet);
+            }
+
             foreach (Player player in _listOfPlayers)
             {
                 if(player.IsAlive)
@@ -97,11 +106,6 @@ namespace HackatonProj.Logics
             {
                 if (enemy.IsAlive)
                     DrawObj(enemy);
-            }
-
-            foreach (Bullet bullet in _listOfBullets)
-            {
-                DrawObj(bullet);
             }
         }
 

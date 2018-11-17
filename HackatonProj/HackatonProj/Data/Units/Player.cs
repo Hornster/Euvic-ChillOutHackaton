@@ -81,13 +81,13 @@ namespace HackatonProj.Data.Units
         }
 
         public int Health { get; private set; } = 10;
-        public bool IsAlive { get; private set; }
+        public bool IsAlive { get; private set; } = true;
 
         public Bullet Shoot()
         {
             Vector2f position = playerSprite.Position;  
             Vector2f size = new Vector2f(playerSprite.Texture.Size.X, playerSprite.Texture.Size.Y);
-            return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X - (float)0.5 * size.X, position.Y));
+            return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X, position.Y + 0.2f*size.Y));
         }
 
         public FloatRect GetCollisionBox()

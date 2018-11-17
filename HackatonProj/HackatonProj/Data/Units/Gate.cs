@@ -18,7 +18,7 @@ namespace HackatonProj.Data.Units
         protected int _maxHealth = 1;
         protected int _health = 1;
         protected Sprite gateSprite = new Sprite();
-        readonly Vector2f maxVelocity = new Vector2f(800.0f, 800.0f);
+        readonly Vector2f maxVelocity = new Vector2f(8000.0f, 8000.0f);
         Vector2f currentVelocity = new Vector2f(0.0f, 0.0f);
 
         public void Move(Time lastFrameTime)

@@ -12,8 +12,8 @@ namespace HackatonProj.Data.Objects
 {
     public class Bullet: IProjectile, IColidable
     {
-        private RectangleShape _shape = new RectangleShape(new Vector2f(3, 10));
-        readonly Vector2f velocity = new Vector2f(0.0f, 1000.0f);
+        private RectangleShape _shape = new RectangleShape(new Vector2f(5, 20));
+        readonly Vector2f velocity = new Vector2f(0.0f, -1000.0f);
 
         public int damage { get; } = 1;
 
@@ -21,6 +21,8 @@ namespace HackatonProj.Data.Objects
         public Bullet(Enums.players player, Vector2f startingPosition)
         {
             this.Player = player;
+            _shape.Position = startingPosition;
+            _shape.FillColor = Color.Cyan;
         }
 
         public Enums.players Player { get; }
@@ -33,6 +35,7 @@ namespace HackatonProj.Data.Objects
         public void Move(Time lastFrameTime)
         {
             Vector2f frameVelocity = new Vector2f(velocity.X, velocity.Y * lastFrameTime.AsSeconds());
+            Move(frameVelocity);
         }
 
         public void Draw(RenderTarget target, RenderStates states)
