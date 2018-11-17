@@ -25,8 +25,8 @@ namespace HackatonProj.Drawing
                                                    "its best Vindicators to help people of AEInf sector and save them \n" +
                                                    "from cruel fate.";
 
-        private const int showTime = 10;
-        private const int fontSize = 20;
+        private const int showTime = 8;
+        private const int fontSize = 40;
 
         private readonly string storyPage2 = "U.L.A. - the ominous, fearsome Universal Life-form Annihilator \n" +
                                              "the master of Binarium Gates, wants to bury the last sparks of hope \n" +
@@ -41,7 +41,7 @@ namespace HackatonProj.Drawing
 
         private Text CreateText(string text, Font font, int charSize, Color fillColor)
         {
-            Text storyline = new Text(storyPage1, fontLoader.GetFont(), fontSize);
+            Text storyline = new Text(text, fontLoader.GetFont(), fontSize);
             storyline.Color = fillColor;
             Vector2i position = WindowData.windowSize / 2;
             position.X = position.X - (int)storyline.GetLocalBounds().Width /2 ;

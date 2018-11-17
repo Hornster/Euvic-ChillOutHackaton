@@ -96,6 +96,7 @@
     <Compile Include="Drawing\IView.cs" />
     <Compile Include="Drawing\StoryPresenter.cs" />
     <Compile Include="Logics\Core.cs" />
+    <Compile Include="Logics\EventCatcher.cs" />
     <Compile Include="Logics\FontLoader.cs" />
     <Compile Include="Logics\GameOverseer.cs" />
     <Compile Include="Logics\Logics.cs" />

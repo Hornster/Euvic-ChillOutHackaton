@@ -18,7 +18,7 @@ namespace HackatonProj.Drawing
         {
             Vector2f windowSize = new Vector2f(WindowData.windowSize.X, WindowData.windowSize.Y);
             window = new RenderWindow(new VideoMode((uint)size.X, (uint)size.Y), title);
-            
+            window.
             //window.SetView(new View(new Vector2f(0.0f, 0.0f), new Vector2f(1.0f, 1.0f)));
             window.SetFramerateLimit(60);//60FPS is enough for MAX value.
         }
@@ -49,7 +49,6 @@ namespace HackatonProj.Drawing
             DrawObject(obj);
             Display();
         }
-        
 
     }
 }
