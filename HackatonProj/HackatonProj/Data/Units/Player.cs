@@ -10,7 +10,7 @@ using SFML.System;
 
 namespace HackatonProj.Data.Units
 {
-    class Player : ILivingEntity
+    class Player : ILivingEntity, IColidable
     {
         static int numberOfPlayers = 0;
 
@@ -58,8 +58,6 @@ namespace HackatonProj.Data.Units
         public void ReceiveHit(Bullet bullet)
         {
             _health -= bullet.damage;
-            if (_health <= 0)
-                throw new NotImplementedException();
         }
 
         public int Health
@@ -77,10 +75,11 @@ namespace HackatonProj.Data.Units
             return new Bullet(player, new Vector2f(position.X + (float)0.5 * size.X - (float)0.5 * size.X, position.Y));
         }
 
-        public RectangleShape GetCollisionBox()
+        public FloatRect GetCollisionBox()
         {
-            RectangleShape tmp = new RectangleShape(new Vector2f(playerSprite.TextureRect.Width, playerSprite.TextureRect.Height));
-            tmp.Position = playerSprite.Position;
+            Vector2f position = new Vector2f(playerSprite.TextureRect.Width, playerSprite.TextureRect.Height);
+            Vector2f size = new Vector2f(playerSprite.TextureRect.Left, playerSprite.TextureRect.Top);
+            FloatRect tmp = new FloatRect(position, size);
             return tmp;
         }
     }

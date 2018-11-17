@@ -10,7 +10,7 @@ using SFML.System;
 
 namespace HackatonProj.Data.Objects
 {
-    public class Bullet: IProjectile
+    public class Bullet: IProjectile, IColidable
     {
         private RectangleShape _shape = new RectangleShape(new Vector2f(3, 10));
         private Enums.players _player;
@@ -50,6 +50,15 @@ namespace HackatonProj.Data.Objects
         public void Update()
         {
             Move(new Vector2f(0, 2));
+        }
+
+        public FloatRect GetCollisionBox()
+        {
+            Vector2f position = new Vector2f(_shape.TextureRect.Width, _shape.TextureRect.Height);
+            Vector2f size = new Vector2f(_shape.TextureRect.Left, _shape.TextureRect.Top);
+            FloatRect tmp = new FloatRect(position, size);
+
+            return tmp;
         }
     }
 }

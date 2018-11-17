@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HackatonProj.Data.Units
 {
-    class ULA : IEnemy
+    class ULA : IEnemy, IColidable
     {
         private bool    _isAlive    = false;
         private Sprite  _ULASprite  = new Sprite();
@@ -53,12 +53,11 @@ namespace HackatonProj.Data.Units
             _ULASprite.Draw(target, states);
         }
 
-        public RectangleShape GetCollisionBox()
+        public FloatRect GetCollisionBox()
         {
             Vector2f position = _ULASprite.Position;
             Vector2f size = new Vector2f(_ULASprite.Texture.Size.X, _ULASprite.Texture.Size.Y);
-            RectangleShape tmp = new RectangleShape(new Vector2f(136, 73));
-            tmp.Position = position + new Vector2f(62, 47);
+            FloatRect tmp = new FloatRect(position, size);
             return tmp;
         }
 
